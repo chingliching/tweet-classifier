@@ -1,5 +1,11 @@
 # Parts of code borrowed from Danijar Hafner (https://danijar.com/introduction-to-recurrent-networks-in-tensorflow/)
 
+from __future__ import absolute_import
+from __future__ import division
+from __future__ import print_function
+
+import time
+t0 = time.time()
 
 import functools
 import tensorflow as tf
@@ -81,10 +87,11 @@ class SequenceClassification:
         bias = tf.constant(0.1, shape=[out_size])
         return tf.Variable(weight), tf.Variable(bias)
 
+
+
 import csv
 from nltk.corpus import stopwords
-from nltk.tokenize import sent_tokenize, word_tokenize
-
+from nltk.tokenize import sent_tokenize, word_tokenize, TweetTokenizer
 
 def preprocess(readfilename, writefilename):
     print("Preprocessing...")
@@ -97,6 +104,8 @@ def preprocess(readfilename, writefilename):
     #test_labels = []
     
     for row in reader:
+#        if line_num>24: #only run through a few rows
+#            return 1,2 
         line_num += 1
         #print line_num
         if line_num % 500 == 0:
@@ -108,18 +117,24 @@ def preprocess(readfilename, writefilename):
             labels.append(0)
         elif temp_label == 'HillaryClinton':
             labels.append(1)
-        #Make the words to lower format and Remove the stopwords
-        stopWords = set(stopwords.words('english'))
-        words = word_tokenize(temp_text)
+#        print(temp_text)
+        words = TweetTokenizer().tokenize(temp_text)
+#        print(words)
+        for word in words:
+            if word.startswith('http'):
+                words[words.index(word)] = '<url>'
+            if word.startswith('@'):
+                words[words.index(word)] = '<@mention>'
+            if word.startswith('#'):
+                words[words.index(word)] = '<hashtag>'
+            if word[0].isdigit():
+                words[words.index(word)] = '<num>'
+#            if word.endswith('...'): #for some reason some characters are turned into ellipsis, e.g. 'clicks'->'cl...'
+#                words.pop(words.index(word))                 
         words_lower = [w.lower() for w in words]
-        words_lower_filter_stopwords = []
-        for w in words_lower:
-            if w not in stopWords:
-                words_lower_filter_stopwords.append(w)
-        #print words_lower_filter_stopwords
         word_num = 0
         temp_sentence = ""
-        for temp_word in words_lower_filter_stopwords:
+        for temp_word in words_lower:
             word_num += 1
             if word_num == 1:
                 temp_sentence += temp_word
@@ -200,6 +215,9 @@ def main():  #have this perform 3-fold validation
     error = sess.run(model.error, {
         data: test.data, target: test.target, dropout: 1})
     print('Epoch {:2d} error {:3.1f}%'.format(epoch + 1, 100 * error))
+    
+t1 = time.time()
+print('Code run-time: ',t1-t0,'seconds')
 
 
 if __name__ == '__main__':
