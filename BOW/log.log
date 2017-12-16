@@ -1,0 +1,6 @@
+2017-12-15 21:18:22,607 - tensorflow - INFO - this is a test message
+2017-12-15 21:18:24,864 - tensorflow - INFO - Using default config.
+2017-12-15 21:18:24,867 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpuuj906so
+2017-12-15 21:18:24,869 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpuuj906so', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a2abc7c50>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 21:18:24,902 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 21:18:25,137 - tensorflow - INFO - Create CheckpointSaverHook.

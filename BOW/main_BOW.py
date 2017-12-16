@@ -12,8 +12,26 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+
 import logging
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=logging.INFO)
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log.log', level=logging.INFO)
+
+
+
+# get TF logger
+log = logging.getLogger('tensorflow')
+log.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+fh = logging.FileHandler('log.log')
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(formatter)
+log.addHandler(fh)
+
+#This is how you log within Spyder
+#log.info('this is a test message')
+
+
 
 import os
 import tempfile
