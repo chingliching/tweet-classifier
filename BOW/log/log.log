@@ -1,0 +1,278 @@
+2017-12-15 22:04:08,358 - tensorflow - INFO - Using default config.
+2017-12-15 22:04:08,362 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpg31c3_hu
+2017-12-15 22:04:08,364 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpg31c3_hu', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a253b0f28>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:04:08,409 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:04:08,694 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:04:10,171 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpg31c3_hu/model.ckpt.
+2017-12-15 22:04:10,573 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:04:11,674 - tensorflow - INFO - global_step/sec: 90.7656
+2017-12-15 22:04:11,678 - tensorflow - INFO - loss = 101.993, step = 101 (1.105 sec)
+2017-12-15 22:04:12,779 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpg31c3_hu/model.ckpt.
+2017-12-15 22:04:13,021 - tensorflow - INFO - Loss for final step: 76.2825.
+2017-12-15 22:04:13,042 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:04:13,331 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:04:13,548 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:04:13,986 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:04:13
+2017-12-15 22:04:14,108 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpg31c3_hu/model.ckpt-200
+2017-12-15 22:04:39,598 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:04:39
+2017-12-15 22:04:39,599 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.960412, accuracy_baseline = 0.528227, auc = 0.993648, auc_precision_recall = 0.993275, average_loss = 0.173026, global_step = 200, label/mean = 0.471773, loss = 81.9807, prediction/mean = 0.472071
+2017-12-15 22:04:40,789 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:04:41,098 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:04:41,314 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:04:41,720 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:04:41
+2017-12-15 22:04:41,827 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpg31c3_hu/model.ckpt-200
+2017-12-15 22:04:45,578 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:04:45
+2017-12-15 22:04:45,579 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.833333, accuracy_baseline = 0.734177, auc = 0.921741, auc_precision_recall = 0.962047, average_loss = 0.354813, global_step = 200, label/mean = 0.734177, loss = 1462.45, prediction/mean = 0.611973
+2017-12-15 22:04:45,779 - tensorflow - INFO - Using default config.
+2017-12-15 22:04:45,782 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp8wxq8xgo
+2017-12-15 22:04:45,784 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp8wxq8xgo', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a1ea37b00>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:04:45,858 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:04:46,117 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:04:47,405 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp8wxq8xgo/model.ckpt.
+2017-12-15 22:04:47,778 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:04:48,959 - tensorflow - INFO - global_step/sec: 84.6278
+2017-12-15 22:04:48,961 - tensorflow - INFO - loss = 100.578, step = 101 (1.184 sec)
+2017-12-15 22:04:50,018 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp8wxq8xgo/model.ckpt.
+2017-12-15 22:04:50,278 - tensorflow - INFO - Loss for final step: 85.1183.
+2017-12-15 22:04:50,300 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:04:50,611 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:04:50,929 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:04:51,261 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:04:51
+2017-12-15 22:04:51,374 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp8wxq8xgo/model.ckpt-200
+2017-12-15 22:05:16,376 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:05:16
+2017-12-15 22:05:16,377 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.962286, accuracy_baseline = 0.518857, auc = 0.993555, auc_precision_recall = 0.993485, average_loss = 0.178145, global_step = 200, label/mean = 0.481143, loss = 84.4065, prediction/mean = 0.477144
+2017-12-15 22:05:17,611 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:05:17,924 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:05:18,142 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:05:18,379 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:05:18
+2017-12-15 22:05:18,478 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp8wxq8xgo/model.ckpt-200
+2017-12-15 22:05:22,526 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:05:22
+2017-12-15 22:05:22,527 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.860759, accuracy_baseline = 0.649789, auc = 0.929412, auc_precision_recall = 0.948687, average_loss = 0.3383, global_step = 200, label/mean = 0.649789, loss = 1394.38, prediction/mean = 0.57729
+2017-12-15 22:05:22,710 - tensorflow - INFO - Using default config.
+2017-12-15 22:05:22,712 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpr1tvf154
+2017-12-15 22:05:22,714 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpr1tvf154', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a27aefa90>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:05:22,761 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:05:23,075 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:05:24,428 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpr1tvf154/model.ckpt.
+2017-12-15 22:05:24,657 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:05:25,898 - tensorflow - INFO - global_step/sec: 80.5079
+2017-12-15 22:05:25,903 - tensorflow - INFO - loss = 107.511, step = 101 (1.246 sec)
+2017-12-15 22:05:27,005 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpr1tvf154/model.ckpt.
+2017-12-15 22:05:27,434 - tensorflow - INFO - Loss for final step: 96.2918.
+2017-12-15 22:05:27,453 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:05:27,760 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:05:27,984 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:05:28,288 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:05:28
+2017-12-15 22:05:28,379 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpr1tvf154/model.ckpt-200
+2017-12-15 22:05:54,482 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:05:54
+2017-12-15 22:05:54,484 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.961349, accuracy_baseline = 0.520262, auc = 0.993642, auc_precision_recall = 0.993341, average_loss = 0.173981, global_step = 200, label/mean = 0.479738, loss = 82.4332, prediction/mean = 0.478968
+2017-12-15 22:05:55,686 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:05:55,988 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:05:56,235 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:05:56,515 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:05:56
+2017-12-15 22:05:56,631 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpr1tvf154/model.ckpt-200
+2017-12-15 22:06:01,031 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:06:01
+2017-12-15 22:06:01,033 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.877637, accuracy_baseline = 0.662447, auc = 0.944576, auc_precision_recall = 0.970862, average_loss = 0.310381, global_step = 200, label/mean = 0.662447, loss = 1279.31, prediction/mean = 0.603595
+2017-12-15 22:06:01,239 - tensorflow - INFO - Using default config.
+2017-12-15 22:06:01,241 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpspcmqjwd
+2017-12-15 22:06:01,243 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpspcmqjwd', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a27ca9400>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:06:01,292 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:06:01,719 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:06:03,005 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpspcmqjwd/model.ckpt.
+2017-12-15 22:06:03,251 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:06:04,426 - tensorflow - INFO - global_step/sec: 85.0528
+2017-12-15 22:06:04,429 - tensorflow - INFO - loss = 107.568, step = 101 (1.178 sec)
+2017-12-15 22:06:05,628 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpspcmqjwd/model.ckpt.
+2017-12-15 22:06:05,876 - tensorflow - INFO - Loss for final step: 89.0707.
+2017-12-15 22:06:05,897 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:06:06,339 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:06:06,548 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:06:06,787 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:06:06
+2017-12-15 22:06:06,895 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpspcmqjwd/model.ckpt-200
+2017-12-15 22:06:32,180 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:06:32
+2017-12-15 22:06:32,181 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.963223, accuracy_baseline = 0.534551, auc = 0.993683, auc_precision_recall = 0.993012, average_loss = 0.168968, global_step = 200, label/mean = 0.465449, loss = 80.0582, prediction/mean = 0.467744
+2017-12-15 22:06:33,382 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:06:33,691 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:06:33,911 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:06:34,154 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:06:34
+2017-12-15 22:06:34,261 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpspcmqjwd/model.ckpt-200
+2017-12-15 22:06:37,977 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:06:37
+2017-12-15 22:06:37,979 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.837553, accuracy_baseline = 0.791139, auc = 0.953104, auc_precision_recall = 0.98614, average_loss = 0.370385, global_step = 200, label/mean = 0.791139, loss = 1526.63, prediction/mean = 0.605607
+2017-12-15 22:06:38,177 - tensorflow - INFO - Using default config.
+2017-12-15 22:06:38,180 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp0uzflgaq
+2017-12-15 22:06:38,182 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp0uzflgaq', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a26ce7c50>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:06:38,235 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:06:38,711 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:06:39,997 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp0uzflgaq/model.ckpt.
+2017-12-15 22:06:40,241 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:06:41,460 - tensorflow - INFO - global_step/sec: 82.0266
+2017-12-15 22:06:41,462 - tensorflow - INFO - loss = 97.6989, step = 101 (1.221 sec)
+2017-12-15 22:06:42,621 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp0uzflgaq/model.ckpt.
+2017-12-15 22:06:42,872 - tensorflow - INFO - Loss for final step: 81.7812.
+2017-12-15 22:06:42,894 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:06:43,342 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:06:43,570 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:06:43,812 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:06:43
+2017-12-15 22:06:43,916 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp0uzflgaq/model.ckpt-200
+2017-12-15 22:07:11,577 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:07:11
+2017-12-15 22:07:11,579 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.963692, accuracy_baseline = 0.517217, auc = 0.993205, auc_precision_recall = 0.993002, average_loss = 0.1725, global_step = 200, label/mean = 0.482783, loss = 81.7315, prediction/mean = 0.480695
+2017-12-15 22:07:12,771 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:07:13,250 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:07:13,481 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:07:13,725 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:07:13
+2017-12-15 22:07:13,823 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp0uzflgaq/model.ckpt-200
+2017-12-15 22:07:17,738 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:07:17
+2017-12-15 22:07:17,740 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.875527, accuracy_baseline = 0.635021, auc = 0.942216, auc_precision_recall = 0.96622, average_loss = 0.317279, global_step = 200, label/mean = 0.635021, loss = 1307.74, prediction/mean = 0.593643
+2017-12-15 22:07:17,955 - tensorflow - INFO - Using default config.
+2017-12-15 22:07:17,957 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp_7etccla
+2017-12-15 22:07:17,959 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp_7etccla', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a26d9b0b8>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:07:18,016 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:07:18,432 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:07:19,810 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp_7etccla/model.ckpt.
+2017-12-15 22:07:20,056 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:07:21,164 - tensorflow - INFO - global_step/sec: 90.2091
+2017-12-15 22:07:21,167 - tensorflow - INFO - loss = 114.508, step = 101 (1.112 sec)
+2017-12-15 22:07:22,344 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp_7etccla/model.ckpt.
+2017-12-15 22:07:22,606 - tensorflow - INFO - Loss for final step: 88.7613.
+2017-12-15 22:07:22,636 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:07:23,136 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:07:23,377 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:07:23,641 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:07:23
+2017-12-15 22:07:23,760 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp_7etccla/model.ckpt-200
+2017-12-15 22:07:47,835 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:07:47
+2017-12-15 22:07:47,840 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.96416, accuracy_baseline = 0.518623, auc = 0.993512, auc_precision_recall = 0.993318, average_loss = 0.172581, global_step = 200, label/mean = 0.481377, loss = 81.7703, prediction/mean = 0.479224
+2017-12-15 22:07:49,184 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:07:49,492 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:07:49,708 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:07:49,949 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:07:49
+2017-12-15 22:07:50,058 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp_7etccla/model.ckpt-200
+2017-12-15 22:07:53,700 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:07:53
+2017-12-15 22:07:53,701 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.85654, accuracy_baseline = 0.647679, auc = 0.924213, auc_precision_recall = 0.955214, average_loss = 0.348527, global_step = 200, label/mean = 0.647679, loss = 1436.54, prediction/mean = 0.585123
+2017-12-15 22:07:53,904 - tensorflow - INFO - Using default config.
+2017-12-15 22:07:53,906 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpmj4n84s_
+2017-12-15 22:07:53,909 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpmj4n84s_', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a27233080>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:07:53,973 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:07:54,235 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:07:55,739 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpmj4n84s_/model.ckpt.
+2017-12-15 22:07:55,987 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:07:57,194 - tensorflow - INFO - global_step/sec: 82.852
+2017-12-15 22:07:57,197 - tensorflow - INFO - loss = 105.745, step = 101 (1.210 sec)
+2017-12-15 22:07:58,313 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpmj4n84s_/model.ckpt.
+2017-12-15 22:07:58,585 - tensorflow - INFO - Loss for final step: 86.6313.
+2017-12-15 22:07:58,611 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:07:59,126 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:07:59,449 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:07:59,696 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:07:59
+2017-12-15 22:07:59,794 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpmj4n84s_/model.ckpt-200
+2017-12-15 22:08:24,412 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:08:24
+2017-12-15 22:08:24,414 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.959007, accuracy_baseline = 0.502225, auc = 0.992828, auc_precision_recall = 0.993036, average_loss = 0.180448, global_step = 200, label/mean = 0.497775, loss = 85.4977, prediction/mean = 0.501106
+2017-12-15 22:08:25,671 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:08:26,172 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:08:26,431 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:08:26,756 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:08:26
+2017-12-15 22:08:26,886 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpmj4n84s_/model.ckpt-200
+2017-12-15 22:08:31,457 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:08:31
+2017-12-15 22:08:31,459 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.896624, accuracy_baseline = 0.5, auc = 0.968995, auc_precision_recall = 0.969143, average_loss = 0.264476, global_step = 200, label/mean = 0.5, loss = 1090.1, prediction/mean = 0.52891
+2017-12-15 22:08:31,669 - tensorflow - INFO - Using default config.
+2017-12-15 22:08:31,671 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgy6cdkmn
+2017-12-15 22:08:31,673 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgy6cdkmn', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a27c9b3c8>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:08:31,730 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:08:32,192 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:08:33,516 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgy6cdkmn/model.ckpt.
+2017-12-15 22:08:33,761 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:08:34,985 - tensorflow - INFO - global_step/sec: 81.7047
+2017-12-15 22:08:34,989 - tensorflow - INFO - loss = 110.868, step = 101 (1.228 sec)
+2017-12-15 22:08:36,103 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgy6cdkmn/model.ckpt.
+2017-12-15 22:08:36,349 - tensorflow - INFO - Loss for final step: 83.6228.
+2017-12-15 22:08:36,375 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:08:36,818 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:08:37,043 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:08:37,288 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:08:37
+2017-12-15 22:08:37,395 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgy6cdkmn/model.ckpt-200
+2017-12-15 22:09:01,642 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:09:01
+2017-12-15 22:09:01,644 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.961583, accuracy_baseline = 0.513001, auc = 0.993317, auc_precision_recall = 0.993813, average_loss = 0.176436, global_step = 200, label/mean = 0.513001, loss = 83.5968, prediction/mean = 0.510127
+2017-12-15 22:09:03,062 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:09:03,389 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:09:03,620 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:09:03,877 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:09:03
+2017-12-15 22:09:03,985 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgy6cdkmn/model.ckpt-200
+2017-12-15 22:09:08,016 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:09:08
+2017-12-15 22:09:08,018 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.873418, accuracy_baseline = 0.637131, auc = 0.945114, auc_precision_recall = 0.916315, average_loss = 0.30361, global_step = 200, label/mean = 0.362869, loss = 1251.4, prediction/mean = 0.402812
+2017-12-15 22:09:08,217 - tensorflow - INFO - Using default config.
+2017-12-15 22:09:08,219 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpq1y8jm3k
+2017-12-15 22:09:08,221 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpq1y8jm3k', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a262cb550>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:09:08,265 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:09:08,688 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:09:10,641 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpq1y8jm3k/model.ckpt.
+2017-12-15 22:09:10,916 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:09:12,120 - tensorflow - INFO - global_step/sec: 82.9878
+2017-12-15 22:09:12,124 - tensorflow - INFO - loss = 109.233, step = 101 (1.209 sec)
+2017-12-15 22:09:13,179 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpq1y8jm3k/model.ckpt.
+2017-12-15 22:09:13,473 - tensorflow - INFO - Loss for final step: 91.1232.
+2017-12-15 22:09:13,502 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:09:13,831 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:09:14,208 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:09:14,474 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:09:14
+2017-12-15 22:09:14,587 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpq1y8jm3k/model.ckpt-200
+2017-12-15 22:09:40,027 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:09:40
+2017-12-15 22:09:40,029 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.962286, accuracy_baseline = 0.553291, auc = 0.993065, auc_precision_recall = 0.994412, average_loss = 0.174764, global_step = 200, label/mean = 0.553291, loss = 82.8046, prediction/mean = 0.555707
+2017-12-15 22:09:41,232 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:09:41,622 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:09:42,049 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:09:42,322 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:09:42
+2017-12-15 22:09:42,423 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpq1y8jm3k/model.ckpt-200
+2017-12-15 22:09:46,670 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:09:46
+2017-12-15 22:09:46,672 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.860759, accuracy_baseline = 1.0, auc = 1.0, auc_precision_recall = 0.0, average_loss = 0.314358, global_step = 200, label/mean = 0.0, loss = 1295.7, prediction/mean = 0.212626
+2017-12-15 22:09:46,874 - tensorflow - INFO - Using default config.
+2017-12-15 22:09:46,876 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmprvqzqwlt
+2017-12-15 22:09:46,878 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmprvqzqwlt', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a26cc1c88>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:09:46,947 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:09:47,186 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:09:48,619 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmprvqzqwlt/model.ckpt.
+2017-12-15 22:09:49,113 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:09:50,341 - tensorflow - INFO - global_step/sec: 81.4298
+2017-12-15 22:09:50,344 - tensorflow - INFO - loss = 102.464, step = 101 (1.232 sec)
+2017-12-15 22:09:51,347 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmprvqzqwlt/model.ckpt.
+2017-12-15 22:09:51,595 - tensorflow - INFO - Loss for final step: 85.2375.
+2017-12-15 22:09:51,620 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:09:51,924 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:09:52,144 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:09:52,564 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:09:52
+2017-12-15 22:09:52,676 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmprvqzqwlt/model.ckpt-200
+2017-12-15 22:10:18,626 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:10:18
+2017-12-15 22:10:18,628 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.961583, accuracy_baseline = 0.553291, auc = 0.99371, auc_precision_recall = 0.994988, average_loss = 0.170203, global_step = 200, label/mean = 0.553291, loss = 80.6432, prediction/mean = 0.556057
+2017-12-15 22:10:20,257 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:10:20,659 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:10:20,936 - tensorflow - WARNING - Casting <dtype: 'float32'> labels to bool.
+2017-12-15 22:10:21,536 - tensorflow - INFO - Starting evaluation at 2017-12-16-06:10:21
+2017-12-15 22:10:21,665 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmprvqzqwlt/model.ckpt-200
+2017-12-15 22:10:26,317 - tensorflow - INFO - Finished evaluation at 2017-12-16-06:10:26
+2017-12-15 22:10:26,321 - tensorflow - INFO - Saving dict for global step 200: accuracy = 0.827004, accuracy_baseline = 1.0, auc = 1.0, auc_precision_recall = 0.0, average_loss = 0.380082, global_step = 200, label/mean = 0.0, loss = 1566.6, prediction/mean = 0.252607
+2017-12-15 22:11:27,058 - tensorflow - INFO - Using default config.
+2017-12-15 22:11:27,058 - tensorflow - INFO - Using default config.
+2017-12-15 22:11:27,061 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpam91qoxu
+2017-12-15 22:11:27,061 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpam91qoxu
+2017-12-15 22:11:27,063 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpam91qoxu', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a26cc70b8>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:11:27,063 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpam91qoxu', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a26cc70b8>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:11:27,109 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:11:27,109 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:11:27,355 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:11:27,355 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:13:19,129 - tensorflow - INFO - Using default config.
+2017-12-15 22:13:19,129 - tensorflow - INFO - Using default config.
+2017-12-15 22:13:19,131 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp6icmor_7
+2017-12-15 22:13:19,131 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp6icmor_7
+2017-12-15 22:13:19,133 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp6icmor_7', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a26d7c8d0>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:13:19,133 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp6icmor_7', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a26d7c8d0>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-15 22:13:19,184 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:13:19,184 - tensorflow - DEBUG - Transforming feature_column _NumericColumn(key='x', shape=(2413,), default_value=None, dtype=tf.float32, normalizer_fn=None).
+2017-12-15 22:13:19,441 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:13:19,441 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-15 22:13:20,885 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp6icmor_7/model.ckpt.
+2017-12-15 22:13:20,885 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp6icmor_7/model.ckpt.
+2017-12-15 22:13:21,248 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:13:21,248 - tensorflow - INFO - loss = 328.551, step = 1
+2017-12-15 22:13:22,410 - tensorflow - INFO - global_step/sec: 86.0614
+2017-12-15 22:13:22,410 - tensorflow - INFO - global_step/sec: 86.0614
+2017-12-15 22:13:22,412 - tensorflow - INFO - loss = 100.872, step = 101 (1.164 sec)
+2017-12-15 22:13:22,412 - tensorflow - INFO - loss = 100.872, step = 101 (1.164 sec)

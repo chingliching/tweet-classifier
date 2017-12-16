@@ -14,7 +14,7 @@ from __future__ import print_function
 
 
 import logging
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log.log', level=logging.INFO)
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log/log.log', level=logging.INFO)
 
 
 
@@ -23,7 +23,7 @@ log = logging.getLogger('tensorflow')
 log.setLevel(logging.DEBUG)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-fh = logging.FileHandler('log.log')
+fh = logging.FileHandler('log/log.log')
 fh.setLevel(logging.DEBUG)
 fh.setFormatter(formatter)
 log.addHandler(fh)
@@ -166,6 +166,7 @@ def crossValidate(train_tfidf,train_labels):
     valid_size = int(num_train/10)
     result = []
     for i in range(10):
+        tf.reset_default_graph()
         steps=200
         tf.Session().run(tf.global_variables_initializer())
         test_temp = np.array(train_tfidf.toarray()[valid_size*i:valid_size*(i+1)])
