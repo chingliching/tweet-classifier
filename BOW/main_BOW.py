@@ -165,26 +165,35 @@ def crossValidate(train_tfidf,train_labels):
     num_train = train_tfidf.shape[0]
     valid_size = int(num_train/10)
     result = []
-    for i in range(10):
-        tf.reset_default_graph()
-        steps=200
-        tf.Session().run(tf.global_variables_initializer())
-        test_temp = np.array(train_tfidf.toarray()[valid_size*i:valid_size*(i+1)])
-        test_labels_temp = np.array(train_labels[valid_size*i:valid_size*(i+1)])
-        train_temp = np.concatenate((np.array(train_tfidf.toarray()[:valid_size*i]),np.array(train_tfidf.toarray()[valid_size*(i+1):])))
-        train_labels_temp = np.concatenate((train_labels[:valid_size*i],train_labels[valid_size*(i+1):]))
-        estimator = tf.estimator.LinearClassifier(feature_columns=feature_columns)
-        input_fn = tf.estimator.inputs.numpy_input_fn(
-            {"x": train_temp}, train_labels_temp, batch_size=valid_size, num_epochs=None, shuffle=True)
-        train_input_fn = tf.estimator.inputs.numpy_input_fn(
-            {"x": train_temp}, train_labels_temp, batch_size=valid_size, num_epochs=steps, shuffle=False)
-        eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-            {"x": test_temp}, test_labels_temp, batch_size=num_train-valid_size, num_epochs=steps, shuffle=False)
-        estimator.train(input_fn=input_fn, steps=steps)
-        train_metrics = estimator.evaluate(input_fn=train_input_fn)
-        eval_metrics = estimator.evaluate(input_fn=eval_input_fn)
+    for learning_rate in [2**j for j in range(-5,5)]:
+        for l1 in [2**k for k in range(-5,5)]:
+            log.info('now cross-validating for learning_rate= 2**'+str(int(log(learning_rate)/log(2)))+'and l1_regularization_strength= 2**'+str(int(log(l1)/log(2))))
+            for i in range(10):
+                t0 = time.time()
+                tf.reset_default_graph()
+                steps=200
+                tf.Session().run(tf.global_variables_initializer())
+                test_temp = np.array(train_tfidf.toarray()[valid_size*i:valid_size*(i+1)])
+                test_labels_temp = np.array(train_labels[valid_size*i:valid_size*(i+1)])
+                train_temp = np.concatenate((np.array(train_tfidf.toarray()[:valid_size*i]),np.array(train_tfidf.toarray()[valid_size*(i+1):])))
+                train_labels_temp = np.concatenate((train_labels[:valid_size*i],train_labels[valid_size*(i+1):]))
+                estimator = tf.estimator.LinearClassifier(feature_columns=feature_columns,
+                                                          optimizer=tf.train.FtrlOptimizer(
+                                                                  learning_rate=learning_rate,
+                                                                  l1_regularization_strength=l1))
+                input_fn = tf.estimator.inputs.numpy_input_fn(
+                    {"x": train_temp}, train_labels_temp, batch_size=valid_size, num_epochs=None, shuffle=True)
+                train_input_fn = tf.estimator.inputs.numpy_input_fn(
+                    {"x": train_temp}, train_labels_temp, batch_size=valid_size, num_epochs=steps, shuffle=False)
+                eval_input_fn = tf.estimator.inputs.numpy_input_fn(
+                    {"x": test_temp}, test_labels_temp, batch_size=num_train-valid_size, num_epochs=steps, shuffle=False)
+                estimator.train(input_fn=input_fn, steps=steps)
+                train_metrics = estimator.evaluate(input_fn=train_input_fn)
+                eval_metrics = estimator.evaluate(input_fn=eval_input_fn)
+                t1 = time.time()
+                log.info('run-time for this run is '+str(t1-t0)+' seconds')
 #        print(train_metrics,eval_metrics)
-        result.append([train_metrics,eval_metrics])
+#        result.append([train_metrics,eval_metrics])
     return result
 
 result = crossValidate(train_tfidf,train_labels)
