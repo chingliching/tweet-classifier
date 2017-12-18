@@ -14,16 +14,17 @@ from __future__ import print_function
 
 
 import logging
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log/log.log', level=logging.INFO)
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log/hyperparam_scan.log', level=logging.INFO)
 
 
 
 # get TF logger
 log = logging.getLogger('tensorflow')
-log.setLevel(logging.DEBUG)
+log.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
-fh = logging.FileHandler('log/log.log')
+
+fh = logging.FileHandler('log/hyperparam_scan.log')
 fh.setLevel(logging.DEBUG)
 fh.setFormatter(formatter)
 log.addHandler(fh)
@@ -165,11 +166,14 @@ def crossValidate(train_tfidf,train_labels):
     num_train = train_tfidf.shape[0]
     valid_size = int(num_train/10)
     result = []
-    for learning_rate in [2**j for j in range(-5,5)]:
-        for l1 in [2**k for k in range(-5,5)]:
-            log.info('now cross-validating for learning_rate= 2**'+str(int(log(learning_rate)/log(2)))+'and l1_regularization_strength= 2**'+str(int(log(l1)/log(2))))
+    mean_acc_dict={}
+    min_acc_dict={}
+    for learning_rate in [5**j for j in range(0,5)]:
+        for l1 in [5**k for k in range(0,5)]:
+            log.info('now cross-validating for learning_rate= '+str(learning_rate)+'and l1_regularization_strength= '+str(l1))
+            t0 = time.time()
+            accuracies=[]
             for i in range(10):
-                t0 = time.time()
                 tf.reset_default_graph()
                 steps=200
                 tf.Session().run(tf.global_variables_initializer())
@@ -188,13 +192,33 @@ def crossValidate(train_tfidf,train_labels):
                 eval_input_fn = tf.estimator.inputs.numpy_input_fn(
                     {"x": test_temp}, test_labels_temp, batch_size=num_train-valid_size, num_epochs=steps, shuffle=False)
                 estimator.train(input_fn=input_fn, steps=steps)
-                train_metrics = estimator.evaluate(input_fn=train_input_fn)
+#                train_metrics = estimator.evaluate(input_fn=train_input_fn)
                 eval_metrics = estimator.evaluate(input_fn=eval_input_fn)
-                t1 = time.time()
-                log.info('run-time for this run is '+str(t1-t0)+' seconds')
+                accuracies.append(eval_metrics['accuracy'])
+            t1 = time.time()
+            log.info('run-time for these hyperparams is '+str(t1-t0)+' seconds')
+            log.info('Average accuracy = '+str(np.array(accuracies).mean())+'; Min accuracy = '+str(np.array(accuracies).min()))
+            mean_acc_dict[learning_rate,l1]=np.array(accuracies).mean()
+            min_acc_dict[learning_rate,l1]=np.array(accuracies).min()
+            log.info('Intermediate result: max mean accuracy is '+str(max(mean_acc_dict.values()))+' for (learning_rate, l1) = '+str(max(mean_acc_dict,key=mean_acc_dict.get)))
+            log.info('Intermediate result: best min accuracy is '+str(max(min_acc_dict.values()))+' for (learning_rate, l1) = '+str(max(min_acc_dict,key=min_acc_dict.get)))
+
+    log.info('Result: max average accuracy is for (learning_rate, l1) = '+str(max(mean_acc_dict,mean_acc_dict.get))+
+    'and highest value of min accuracy is for (learning_rate, l1) = '+str(max(min_acc_dict,min_acc_dict.get)))
 #        print(train_metrics,eval_metrics)
 #        result.append([train_metrics,eval_metrics])
     return result
+
+
+def writeResults(learning_rate,l1,mean_acc,min_acc):
+    writer = open('log/hyperparam_scan.csv','w', encoding="utf8")
+    writer.write('id,realDonaldTrump,HillaryClinton\n')
+    for i in range(test_tfidf.shape[0]):
+        writer.write(str(i)+',')
+        hill = y(loc,tfidf.getrow(i))
+        writer.write(str(round(1-hill,5))+',')
+        writer.write(str(round(hill,5))+'\n')
+        i=+1 
 
 result = crossValidate(train_tfidf,train_labels)
 
