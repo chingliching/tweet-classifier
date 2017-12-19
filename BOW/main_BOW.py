@@ -5,9 +5,6 @@ Created on Sat Dec  2 15:10:09 2017
 
 @author: ivan
 """
-
-#comment to test Github desktop again
-
 from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
@@ -15,7 +12,6 @@ from __future__ import print_function
 
 import logging
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log/hyperparam_scan.log', level=logging.INFO)
-
 
 
 # get TF logger
@@ -31,7 +27,6 @@ log.addHandler(fh)
 
 #This is how you log within Spyder
 #log.info('this is a test message')
-
 
 
 import os
@@ -51,8 +46,6 @@ from nltk.tokenize import sent_tokenize, word_tokenize, TweetTokenizer
 
 tf.reset_default_graph()  #resets graph, for experimenting
 
-
-
 def preprocess(readfilename, writefilename):
     print("Preprocessing...")
     reader = csv.reader(open(readfilename, encoding="utf8"))
@@ -64,8 +57,6 @@ def preprocess(readfilename, writefilename):
     #test_labels = []
     
     for row in reader:
-#        if line_num>24: #only run through a few rows
-#            return 1,2
         line_num += 1
         #print line_num
         if line_num % 500 == 0:
@@ -79,17 +70,14 @@ def preprocess(readfilename, writefilename):
             labels.append(1)
         #Make the words to lower format and Remove the stopwords
         stopWords = set(stopwords.words('english'))
-#        print(temp_text)
         words = TweetTokenizer().tokenize(temp_text)
-#        print(words)                
         words_lower = [w.lower() for w in words]
-#        print(words_lower)
         words_lower_filter_stopwords = []
         for w in words_lower:
             if w not in stopWords:
                 words_lower_filter_stopwords.append(w)
         words = words_lower_filter_stopwords
-        for word in words:
+        for word in words:  #looking too much into these information will presumably lead to overfitting
             if word.startswith('http'):
                 words[words.index(word)] = '<url>'
             if word.startswith('@'):
@@ -109,13 +97,6 @@ def preprocess(readfilename, writefilename):
             else:
                 temp_sentence += " " + temp_word
         temp_sentence += "\n"
-#        if line_num>17 and line_num<24: #only run through a few rows
-#            print('temp_text: ',temp_text)
-#            print('words: ',words)
-#            print('words_lower: ',words_lower)
-#            print('temp_sentence: ',temp_sentence)
-#            if line_num==23:
-#                return 1,2
         messages.append(temp_sentence)
 #        print(temp_sentence)
         writer.write(temp_sentence)
@@ -139,30 +120,12 @@ def tokenize(readfilename, writefilename):
     
 
 
-
-
-#def tokenize_test(readfilename, writefilename,train_vocab):
-#    labels, messages =preprocess(readfilename, writefilename)
-#    from sklearn.feature_extraction.text import CountVectorizer
-#    vectorizer = CountVectorizer(decode_error='ignore',vocabulary=train_vocab)
-#    X = vectorizer.fit_transform(messages)
-#    sms_array = X.toarray()
-#    from sklearn.feature_extraction.text import TfidfTransformer
-#    transformer = TfidfTransformer(smooth_idf=False,norm='l2')
-#    tfidf = transformer.fit_transform(sms_array)
-#    return [tfidf, labels]
-
-
-
-
 train_tfidf,train_labels,vocab = tokenize('train.csv','train_p.csv')
 num_train = train_tfidf.shape[0]
 num_words = train_tfidf.shape[1]
 
-#test_tfidf, test_labels = tokenize_test('test.csv','test_p.csv',vocab)
 
 feature_columns = [tf.feature_column.numeric_column("x", shape=[num_words])]
-
 
 
 def crossValidate(train_tfidf,train_labels):
@@ -217,7 +180,3 @@ result = crossValidate(train_tfidf,train_labels)
 
 t1 = time.time()
 print('Code run-time: ',t1-t0,'seconds')
-
-#
-#for name in estimator.get_variable_names():
-#    print(name, 'is', estimator.get_variable_value(name))
