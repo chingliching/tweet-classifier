@@ -5,7 +5,7 @@ Machine learning algorithm to classify tweets as Hillary Clinton or Donald Trump
 3. Recurrent neutral network (in progress).
 
 Preprocessing:
-- For some words the category is more important than the actual meaning; therefore to avoid overfitting I replace all urls, @mentions, #hashtags, and numbers with '<url>', '<@mention>', '<hashtag>', and '<num>', respectively
+- For some words the category is more important than the actual meaning; therefore to avoid overfitting I replace all urls, @mentions, #hashtags, and numbers with 'url', '@mention', 'hashtag', and 'num', respectively
 
 Bag-of-words model:
 - Used the inverse-document-frequency term-frequency method to vectorize the tweets
@@ -19,3 +19,4 @@ Embedded word vectors:
 - A scan of hyperparameter space showed that a good choice of embedding size is 50, which achieved an accuracy of 77.8%
 
 [[https://github.com/IvanChingLi/tweet-classifier/blob/master/BOW_embedding/plot1.png]]
+![alt text](tweet-classifier/BOW_embedding/plot1.png)
