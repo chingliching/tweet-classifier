@@ -22,3 +22,4 @@ Embedded word vectors:
 ![alt text](tweet-classifier/BOW_embedding/plot1.png)
 ![My image](/BOW_embedding/tweet-classifier/BOW_embedding/plot1.png)
 ![My image](tweet-classifier/BOW_embedding/plot1.png)
+![My image](/BOW_embedding/plot1.png)
