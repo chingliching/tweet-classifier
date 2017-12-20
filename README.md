@@ -12,7 +12,7 @@ Bag-of-words model:
 - Used TensorFlow estimator LinearClassifier to perform the training
 - This model is simple but is expensive to train.
 - A scan of hyperparameter space showed that good results were yielded for learning_rate = 1 and l1 = 5 (parameters for the FTRL optimizer), achieving an accuracy of 86.4% (see graph below)
-![My image](/BOW/log/hyperparam_plots.png)
+![My image](/BOW/log/hyperparam_plot.png?s=128)
 
 Embedded word vectors:
 - Used a Word2Vec model to vectorize the tweets (implemented through the gensim package)
