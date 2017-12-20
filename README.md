@@ -20,3 +20,5 @@ Embedded word vectors:
 
 [[https://github.com/IvanChingLi/tweet-classifier/blob/master/BOW_embedding/plot1.png]]
 ![alt text](tweet-classifier/BOW_embedding/plot1.png)
+![My image](/BOW_embedding/tweet-classifier/BOW_embedding/plot1.png)
+![My image](tweet-classifier/BOW_embedding/plot1.png)
