@@ -1,4 +1,5 @@
-# Parts of code borrowed from Danijar Hafner (https://danijar.com/introduction-to-recurrent-networks-in-tensorflow/)
+# Parts of code borrowed from Danijar Hafner (https://danijar.com/introduction-to-recurrent-networks-in-tensorflow/,
+#https://gist.github.com/danijar/61f9226f7ea498abce36187ddaf51ed5)
 
 from __future__ import absolute_import
 from __future__ import division
@@ -10,6 +11,21 @@ t0 = time.time()
 import functools
 import tensorflow as tf
 import numpy as np
+import gensim
+
+import logging
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log/hyperparam_scan.log', level=logging.INFO)
+# get TF logger
+log = logging.getLogger('tensorflow')
+log.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh = logging.FileHandler('log/main_log.log')
+fh.setLevel(logging.DEBUG)
+fh.setFormatter(formatter)
+log.addHandler(fh)
+#This is how you log within Spyder
+#log.info('this is a test message')
+
 
 tf.reset_default_graph()  #resets graph, for experimenting
 
@@ -90,7 +106,6 @@ class SequenceClassification:
 
 
 import csv
-from nltk.corpus import stopwords
 from nltk.tokenize import sent_tokenize, word_tokenize, TweetTokenizer
 
 def preprocess(readfilename, writefilename):
@@ -148,29 +163,15 @@ def preprocess(readfilename, writefilename):
     print("Preprocessing is done!")
     return labels, messages
 
-#tokenize the texts and apply tf-idf transform
-def tokenize(readfilename, writefilename):
+def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec
+    res=[]
     labels, messages = preprocess(readfilename, writefilename)
-    from sklearn.feature_extraction.text import CountVectorizer
-    vectorizer = CountVectorizer(min_df=3,decode_error='ignore')
-    X = vectorizer.fit_transform(messages)
-    sms_array = X.toarray()
-    vocab = vectorizer.vocabulary_
-    from sklearn.feature_extraction.text import TfidfTransformer
-    transformer = TfidfTransformer(smooth_idf=False, norm='l2')
-    tfidf = transformer.fit_transform(sms_array)
-    return [tfidf, labels, vocab]
+    model = gensim.models.Word2Vec(messages, min_count=1, size=size, iter=8)
+    model.train(messages, total_examples=model.corpus_count, epochs=model.iter)
+    for message in messages:
+        res.append(sum([model.wv[word] for word in message]))
+    return res, labels, None #None to account for vocab
 
-def tokenize_test(readfilename, writefilename,train_vocab):
-    labels, messages =preprocess(readfilename, writefilename)
-    from sklearn.feature_extraction.text import CountVectorizer
-    vectorizer = CountVectorizer(decode_error='ignore',vocabulary=train_vocab)
-    X = vectorizer.fit_transform(messages)
-    sms_array = X.toarray()
-    from sklearn.feature_extraction.text import TfidfTransformer
-    transformer = TfidfTransformer(smooth_idf=False,norm='l2')
-    tfidf = transformer.fit_transform(sms_array)
-    return [tfidf, labels]
 
 def main():  #have this perform 3-fold validation
     # We treat images as sequences of pixel rows.
