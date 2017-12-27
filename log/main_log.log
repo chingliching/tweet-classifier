@@ -1,0 +1,365 @@
+2017-12-22 11:55:58,831 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-22 11:55:58,832 : INFO : collecting all words and their counts
+2017-12-22 11:55:58,832 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-22 11:55:58,832 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-22 11:55:58,914 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-22 11:55:58,914 : INFO : Loading a fresh vocabulary
+2017-12-22 11:55:58,914 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-22 11:55:58,914 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-22 11:55:58,915 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-22 11:55:58,916 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-22 11:55:58,916 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-22 11:55:58,916 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-22 11:55:58,917 : INFO : resetting layer weights
+2017-12-22 11:55:58,920 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-22 11:55:59,660 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-22 11:55:59,661 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-22 11:55:59,662 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-22 11:55:59,662 : INFO : training on 4093216 raw words (838232 effective words) took 0.7s, 1131979 effective words/s
+2017-12-22 11:55:59,662 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-22 11:56:00,417 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-22 11:56:00,418 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-22 11:56:00,419 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-22 11:56:00,419 : INFO : training on 4093216 raw words (838348 effective words) took 0.8s, 1109675 effective words/s
+2017-12-22 11:57:06,604 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-22 11:57:06,604 : INFO : collecting all words and their counts
+2017-12-22 11:57:06,604 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-22 11:57:06,604 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-22 11:57:06,679 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-22 11:57:06,679 : INFO : Loading a fresh vocabulary
+2017-12-22 11:57:06,680 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-22 11:57:06,680 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-22 11:57:06,681 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-22 11:57:06,681 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-22 11:57:06,681 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-22 11:57:06,681 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-22 11:57:06,681 : INFO : resetting layer weights
+2017-12-22 11:57:06,683 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-22 11:57:07,415 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-22 11:57:07,416 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-22 11:57:07,416 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-22 11:57:07,416 : INFO : training on 4093216 raw words (837855 effective words) took 0.7s, 1145184 effective words/s
+2017-12-22 11:57:07,416 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-22 11:57:08,176 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-22 11:57:08,178 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-22 11:57:08,178 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-22 11:57:08,178 : INFO : training on 4093216 raw words (837858 effective words) took 0.8s, 1101882 effective words/s
+2017-12-22 11:57:21,604 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-22 11:57:21,605 : INFO : collecting all words and their counts
+2017-12-22 11:57:21,605 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-22 11:57:21,605 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-22 11:57:21,686 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-22 11:57:21,687 : INFO : Loading a fresh vocabulary
+2017-12-22 11:57:21,687 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-22 11:57:21,687 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-22 11:57:21,688 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-22 11:57:21,688 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-22 11:57:21,688 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-22 11:57:21,688 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-22 11:57:21,689 : INFO : resetting layer weights
+2017-12-22 11:57:21,690 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-22 11:57:22,427 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-22 11:57:22,428 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-22 11:57:22,429 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-22 11:57:22,429 : INFO : training on 4093216 raw words (836923 effective words) took 0.7s, 1137457 effective words/s
+2017-12-22 11:57:22,429 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-22 11:57:23,273 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-22 11:57:23,273 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-22 11:57:23,274 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-22 11:57:23,274 : INFO : training on 4093216 raw words (840053 effective words) took 0.8s, 996182 effective words/s
+2017-12-22 11:57:45,517 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-22 11:57:45,517 : INFO : collecting all words and their counts
+2017-12-22 11:57:45,517 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-22 11:57:45,517 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-22 11:57:45,591 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-22 11:57:45,591 : INFO : Loading a fresh vocabulary
+2017-12-22 11:57:45,591 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-22 11:57:45,592 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-22 11:57:45,592 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-22 11:57:45,592 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-22 11:57:45,592 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-22 11:57:45,592 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-22 11:57:45,592 : INFO : resetting layer weights
+2017-12-22 11:57:45,594 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-22 11:57:46,327 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-22 11:57:46,329 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-22 11:57:46,329 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-22 11:57:46,329 : INFO : training on 4093216 raw words (838808 effective words) took 0.7s, 1150923 effective words/s
+2017-12-22 11:57:46,329 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-22 11:57:47,123 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-22 11:57:47,124 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-22 11:57:47,125 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-22 11:57:47,125 : INFO : training on 4093216 raw words (838945 effective words) took 0.8s, 1056278 effective words/s
+2017-12-27 00:25:18,766 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 00:25:18,766 : INFO : collecting all words and their counts
+2017-12-27 00:25:18,766 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-27 00:25:18,769 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 00:25:18,956 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-27 00:25:18,956 : INFO : Loading a fresh vocabulary
+2017-12-27 00:25:18,957 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-27 00:25:18,957 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-27 00:25:18,958 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-27 00:25:18,960 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-27 00:25:18,961 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-27 00:25:18,961 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-27 00:25:18,961 : INFO : resetting layer weights
+2017-12-27 00:25:18,963 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 00:25:19,720 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 00:25:19,720 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 00:25:19,720 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 00:25:19,721 : INFO : training on 4093216 raw words (839048 effective words) took 0.8s, 1111048 effective words/s
+2017-12-27 00:25:19,721 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 00:25:20,472 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 00:25:20,474 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 00:25:20,474 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 00:25:20,474 : INFO : training on 4093216 raw words (837727 effective words) took 0.8s, 1114210 effective words/s
+2017-12-27 00:25:47,174 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 00:25:47,174 : INFO : collecting all words and their counts
+2017-12-27 00:25:47,174 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-27 00:25:47,174 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 00:25:47,250 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-27 00:25:47,250 : INFO : Loading a fresh vocabulary
+2017-12-27 00:25:47,250 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-27 00:25:47,251 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-27 00:25:47,251 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-27 00:25:47,251 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-27 00:25:47,251 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-27 00:25:47,251 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-27 00:25:47,252 : INFO : resetting layer weights
+2017-12-27 00:25:47,253 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 00:25:47,979 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 00:25:47,980 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 00:25:47,981 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 00:25:47,981 : INFO : training on 4093216 raw words (838307 effective words) took 0.7s, 1155153 effective words/s
+2017-12-27 00:25:47,981 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 00:25:48,715 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 00:25:48,717 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 00:25:48,717 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 00:25:48,717 : INFO : training on 4093216 raw words (838293 effective words) took 0.7s, 1140401 effective words/s
+2017-12-27 00:29:47,233 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 00:29:47,233 : INFO : collecting all words and their counts
+2017-12-27 00:29:47,233 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-27 00:29:47,233 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 00:29:47,318 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-27 00:29:47,318 : INFO : Loading a fresh vocabulary
+2017-12-27 00:29:47,318 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-27 00:29:47,318 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-27 00:29:47,319 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-27 00:29:47,319 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-27 00:29:47,319 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-27 00:29:47,319 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-27 00:29:47,319 : INFO : resetting layer weights
+2017-12-27 00:29:47,321 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 00:29:48,043 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 00:29:48,044 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 00:29:48,045 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 00:29:48,045 : INFO : training on 4093216 raw words (839169 effective words) took 0.7s, 1160813 effective words/s
+2017-12-27 00:29:48,045 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 00:29:48,800 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 00:29:48,802 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 00:29:48,802 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 00:29:48,802 : INFO : training on 4093216 raw words (837796 effective words) took 0.8s, 1111910 effective words/s
+2017-12-27 00:41:28,377 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 00:41:28,377 : INFO : collecting all words and their counts
+2017-12-27 00:41:28,377 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-27 00:41:28,377 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 00:41:28,453 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-27 00:41:28,454 : INFO : Loading a fresh vocabulary
+2017-12-27 00:41:28,454 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-27 00:41:28,454 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-27 00:41:28,454 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-27 00:41:28,454 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-27 00:41:28,454 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-27 00:41:28,454 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-27 00:41:28,455 : INFO : resetting layer weights
+2017-12-27 00:41:28,456 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 00:41:29,176 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 00:41:29,177 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 00:41:29,178 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 00:41:29,178 : INFO : training on 4093216 raw words (838407 effective words) took 0.7s, 1163184 effective words/s
+2017-12-27 00:41:29,179 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 00:41:29,915 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 00:41:29,916 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 00:41:29,917 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 00:41:29,917 : INFO : training on 4093216 raw words (838583 effective words) took 0.7s, 1140463 effective words/s
+2017-12-27 11:09:20,574 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 11:09:20,579 : INFO : collecting all words and their counts
+2017-12-27 11:09:20,579 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-27 11:09:20,579 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 11:09:20,652 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-27 11:09:20,652 : INFO : Loading a fresh vocabulary
+2017-12-27 11:09:20,653 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-27 11:09:20,653 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-27 11:09:20,665 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-27 11:09:20,665 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-27 11:09:20,665 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-27 11:09:20,666 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-27 11:09:20,672 : INFO : resetting layer weights
+2017-12-27 11:09:20,677 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:09:21,477 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:09:21,478 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:09:21,479 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:09:21,479 : INFO : training on 4093216 raw words (838599 effective words) took 0.8s, 1052976 effective words/s
+2017-12-27 11:09:21,479 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:09:22,289 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:09:22,290 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:09:22,290 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:09:22,290 : INFO : training on 4093216 raw words (838171 effective words) took 0.8s, 1038510 effective words/s
+2017-12-27 11:12:41,887 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 11:12:41,887 : INFO : collecting all words and their counts
+2017-12-27 11:12:41,888 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-27 11:12:41,888 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 11:12:41,967 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-27 11:12:41,967 : INFO : Loading a fresh vocabulary
+2017-12-27 11:12:41,967 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-27 11:12:41,967 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-27 11:12:41,968 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-27 11:12:41,968 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-27 11:12:41,968 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-27 11:12:41,968 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-27 11:12:41,968 : INFO : resetting layer weights
+2017-12-27 11:12:41,971 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:12:42,797 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:12:42,799 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:12:42,800 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:12:42,800 : INFO : training on 4093216 raw words (838043 effective words) took 0.8s, 1013116 effective words/s
+2017-12-27 11:12:42,800 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:12:43,526 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:12:43,528 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:12:43,528 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:12:43,528 : INFO : training on 4093216 raw words (838060 effective words) took 0.7s, 1153872 effective words/s
+2017-12-27 11:18:13,276 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 11:18:13,277 : INFO : collecting all words and their counts
+2017-12-27 11:18:13,277 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-27 11:18:13,277 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 11:18:13,450 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-27 11:18:13,451 : INFO : Loading a fresh vocabulary
+2017-12-27 11:18:13,452 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-27 11:18:13,452 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-27 11:18:13,452 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-27 11:18:13,453 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-27 11:18:13,453 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-27 11:18:13,453 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-27 11:18:13,454 : INFO : resetting layer weights
+2017-12-27 11:18:13,455 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:18:14,139 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:18:14,141 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:18:14,141 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:18:14,141 : INFO : training on 4093216 raw words (837146 effective words) took 0.7s, 1224709 effective words/s
+2017-12-27 11:18:20,901 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:18:21,607 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:18:21,608 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:18:21,609 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:18:21,609 : INFO : training on 4093216 raw words (838527 effective words) took 0.7s, 1189399 effective words/s
+2017-12-27 11:24:41,729 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 11:24:41,729 : INFO : collecting all words and their counts
+2017-12-27 11:24:41,729 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-27 11:24:41,730 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 11:24:41,907 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-27 11:24:41,907 : INFO : Loading a fresh vocabulary
+2017-12-27 11:24:41,908 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-27 11:24:41,908 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-27 11:24:41,909 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-27 11:24:41,909 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-27 11:24:41,909 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-27 11:24:41,909 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-27 11:24:41,910 : INFO : resetting layer weights
+2017-12-27 11:24:41,911 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:24:42,647 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:24:42,648 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:24:42,650 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:24:42,650 : INFO : training on 4093216 raw words (838329 effective words) took 0.7s, 1137715 effective words/s
+2017-12-27 11:24:44,171 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:24:44,884 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:24:44,886 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:24:44,886 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:24:44,886 : INFO : training on 4093216 raw words (837942 effective words) took 0.7s, 1174977 effective words/s
+2017-12-27 11:30:05,452 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 11:30:05,453 : INFO : collecting all words and their counts
+2017-12-27 11:30:05,453 : WARNING : Each 'sentences' item should be a list of words (usually unicode strings). First item here is instead plain <class 'str'>.
+2017-12-27 11:30:05,453 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 11:30:05,536 : INFO : collected 108 word types from a corpus of 511652 raw words and 4743 sentences
+2017-12-27 11:30:05,536 : INFO : Loading a fresh vocabulary
+2017-12-27 11:30:05,538 : INFO : min_count=1 retains 108 unique words (100% of original 108, drops 0)
+2017-12-27 11:30:05,538 : INFO : min_count=1 leaves 511652 word corpus (100% of original 511652, drops 0)
+2017-12-27 11:30:05,539 : INFO : deleting the raw counts dictionary of 108 items
+2017-12-27 11:30:05,539 : INFO : sample=0.001 downsamples 32 most-common words
+2017-12-27 11:30:05,539 : INFO : downsampling leaves estimated 104759 word corpus (20.5% of prior 511652)
+2017-12-27 11:30:05,539 : INFO : estimated required memory for 108 words and 50 dimensions: 97200 bytes
+2017-12-27 11:30:05,539 : INFO : resetting layer weights
+2017-12-27 11:30:05,540 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:30:06,246 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:30:06,247 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:30:06,248 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:30:06,248 : INFO : training on 4093216 raw words (837589 effective words) took 0.7s, 1186890 effective words/s
+2017-12-27 11:30:07,024 : INFO : training model with 3 workers on 108 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:30:07,769 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:30:07,771 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:30:07,772 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:30:07,772 : INFO : training on 4093216 raw words (837130 effective words) took 0.7s, 1123099 effective words/s
+2017-12-27 11:36:40,348 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 11:36:40,348 : INFO : collecting all words and their counts
+2017-12-27 11:36:40,348 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 11:36:40,370 : INFO : collected 6849 word types from a corpus of 67145 raw words and 4743 sentences
+2017-12-27 11:36:40,371 : INFO : Loading a fresh vocabulary
+2017-12-27 11:36:40,393 : INFO : min_count=1 retains 6849 unique words (100% of original 6849, drops 0)
+2017-12-27 11:36:40,393 : INFO : min_count=1 leaves 67145 word corpus (100% of original 67145, drops 0)
+2017-12-27 11:36:40,420 : INFO : deleting the raw counts dictionary of 6849 items
+2017-12-27 11:36:40,420 : INFO : sample=0.001 downsamples 30 most-common words
+2017-12-27 11:36:40,421 : INFO : downsampling leaves estimated 47231 word corpus (70.3% of prior 67145)
+2017-12-27 11:36:40,421 : INFO : estimated required memory for 6849 words and 25 dimensions: 4794300 bytes
+2017-12-27 11:36:40,440 : INFO : resetting layer weights
+2017-12-27 11:36:40,516 : INFO : training model with 3 workers on 6849 vocabulary and 25 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:36:40,798 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:36:40,798 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:36:40,802 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:36:40,803 : INFO : training on 537160 raw words (378010 effective words) took 0.3s, 1345419 effective words/s
+2017-12-27 11:36:42,115 : INFO : training model with 3 workers on 6849 vocabulary and 25 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:36:42,422 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:36:42,425 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:36:42,428 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:36:42,428 : INFO : training on 537160 raw words (377937 effective words) took 0.3s, 1237145 effective words/s
+2017-12-27 11:39:25,333 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 11:39:25,334 : INFO : collecting all words and their counts
+2017-12-27 11:39:25,334 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 11:39:25,377 : INFO : collected 6994 word types from a corpus of 99748 raw words and 4743 sentences
+2017-12-27 11:39:25,377 : INFO : Loading a fresh vocabulary
+2017-12-27 11:39:25,437 : INFO : min_count=1 retains 6994 unique words (100% of original 6994, drops 0)
+2017-12-27 11:39:25,437 : INFO : min_count=1 leaves 99748 word corpus (100% of original 99748, drops 0)
+2017-12-27 11:39:25,466 : INFO : deleting the raw counts dictionary of 6994 items
+2017-12-27 11:39:25,466 : INFO : sample=0.001 downsamples 59 most-common words
+2017-12-27 11:39:25,466 : INFO : downsampling leaves estimated 69830 word corpus (70.0% of prior 99748)
+2017-12-27 11:39:25,466 : INFO : estimated required memory for 6994 words and 50 dimensions: 6294600 bytes
+2017-12-27 11:39:25,493 : INFO : resetting layer weights
+2017-12-27 11:39:25,594 : INFO : training model with 3 workers on 6994 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:39:26,009 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:39:26,010 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:39:26,014 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:39:26,014 : INFO : training on 797984 raw words (558605 effective words) took 0.4s, 1344514 effective words/s
+2017-12-27 11:39:26,734 : INFO : training model with 3 workers on 6994 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:39:27,207 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:39:27,213 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:39:27,214 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:39:27,214 : INFO : training on 797984 raw words (558422 effective words) took 0.5s, 1177214 effective words/s
+2017-12-27 11:39:47,399 : WARNING : consider setting layer size to a multiple of 4 for greater performance
+2017-12-27 11:39:47,399 : INFO : collecting all words and their counts
+2017-12-27 11:39:47,400 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2017-12-27 11:39:47,428 : INFO : collected 6994 word types from a corpus of 99748 raw words and 4743 sentences
+2017-12-27 11:39:47,428 : INFO : Loading a fresh vocabulary
+2017-12-27 11:39:47,446 : INFO : min_count=1 retains 6994 unique words (100% of original 6994, drops 0)
+2017-12-27 11:39:47,447 : INFO : min_count=1 leaves 99748 word corpus (100% of original 99748, drops 0)
+2017-12-27 11:39:47,464 : INFO : deleting the raw counts dictionary of 6994 items
+2017-12-27 11:39:47,464 : INFO : sample=0.001 downsamples 59 most-common words
+2017-12-27 11:39:47,464 : INFO : downsampling leaves estimated 69830 word corpus (70.0% of prior 99748)
+2017-12-27 11:39:47,464 : INFO : estimated required memory for 6994 words and 50 dimensions: 6294600 bytes
+2017-12-27 11:39:47,479 : INFO : resetting layer weights
+2017-12-27 11:39:47,557 : INFO : training model with 3 workers on 6994 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:39:48,075 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:39:48,077 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:39:48,083 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:39:48,084 : INFO : training on 797984 raw words (558578 effective words) took 0.5s, 1067615 effective words/s
+2017-12-27 11:39:48,084 : INFO : training model with 3 workers on 6994 vocabulary and 50 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2017-12-27 11:39:48,525 : INFO : worker thread finished; awaiting finish of 2 more threads
+2017-12-27 11:39:48,529 : INFO : worker thread finished; awaiting finish of 1 more threads
+2017-12-27 11:39:48,532 : INFO : worker thread finished; awaiting finish of 0 more threads
+2017-12-27 11:39:48,532 : INFO : training on 797984 raw words (559001 effective words) took 0.4s, 1264676 effective words/s

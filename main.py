@@ -12,9 +12,11 @@ import functools
 import tensorflow as tf
 import numpy as np
 import gensim
+import sets
+import pdb
 
 import logging
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log/hyperparam_scan.log', level=logging.INFO)
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log/main_log.log', level=logging.INFO)
 # get TF logger
 log = logging.getLogger('tensorflow')
 log.setLevel(logging.INFO)
@@ -156,7 +158,7 @@ def preprocess(readfilename, writefilename):
             else:
                 temp_sentence += " " + temp_word
         temp_sentence += "\n"
-        messages.append(temp_sentence)
+        messages.append(temp_sentence.split())
 #        print(temp_sentence)
         writer.write(temp_sentence)
     writer.close()
@@ -169,32 +171,43 @@ def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec
     model = gensim.models.Word2Vec(messages, min_count=1, size=size, iter=8)
     model.train(messages, total_examples=model.corpus_count, epochs=model.iter)
     for message in messages:
-        res.append(sum([model.wv[word] for word in message]))
-    return res, labels, None #None to account for vocab
+        res.append([model.wv[word] for word in message])
+    return res, labels
 
 
-def main():  #have this perform 3-fold validation
-    # We treat images as sequences of pixel rows.
-    train_tfidf,train_labels,vocab = tokenize('train.csv','train_p.csv')
-    num_train = train_tfidf.shape[0]
-    num_words = train_tfidf.shape[1]
-#    train, test = mnist.train, mnist.test
-    
+def segment(readfilename, writefilename): #implement data segment later
+    tweets,labels = tokenize(readfilename,writefilename)
+    full = sets.core.dataset.Dataset(data=tweets,target=labels)
+    return full
+        
+def main():  #have this perform 10-fold validation
+#    tweets,labels = tokenize('train.csv','train_p.csv')
+#    i=0
+#    valid_size=len(labels)//10
+#    test_temp = np.array(tweets[valid_size*i:valid_size*(i+1)])
+#    test_labels_temp = np.array(labels[valid_size*i:valid_size*(i+1)])
+#    train_temp = np.array(tweets[valid_size*(i+1):])
+#    labels_temp = np.array(labels[valid_size*(i+1):])
 #    _, rows, row_size = train.data.shape
-    rows = num_train
-    row_size = num_words
 #    rows = num_words
 #    row_size = num_train
-    print('rows:',rows,', row_size:',row_size)
 #    num_classes = train.target.shape[1]
-    num_classes = 2
+#    num_classes = 2
+#    row_size=50
+#    rows=len(labels_temp)
+    full=segment('train.csv','train_p.csv')
+    train, test = sets.Split(0.9)(full)
+    data_size,input_size = train.data.shape
+    output_size = 1
+#    train=full.sample(int(len(full)*.9))
+#    test=full.difference(train)
 #    data = tf.placeholder(tf.float32, [None, rows, row_size])
-    data = tf.placeholder(tf.float32, [None, rows, row_size])
-    target = tf.placeholder(tf.float32, [None, num_classes])
+    data = tf.placeholder(tf.float32, [None, input_size])
+    target = tf.placeholder(tf.float32, [None, output_size])
     dropout = tf.placeholder(tf.float32)
     model = SequenceClassification(data, target, dropout)
     sess = tf.Session()
-    sess.run(tf.global_variables_initializer())
+    sess.run(tf.initialize_all_variables())
     epoch=0
 #    for epoch in range(10):
 #        for _ in range(100):
@@ -209,17 +222,21 @@ def main():  #have this perform 3-fold validation
 #            data: test.data, target: test.target, dropout: 1})
 #        batch_data = np.array(train_tfidf.toarray())
 #        batch_target = np.array(train_labels)
-    batch_data = np.array([train_tfidf.toarray()]*model.num_hidden)
-    batch_target = np.array([train_labels]*model.num_hidden)
-    sess.run(model.optimize, {
-            data: batch_data, target: batch_target, dropout: 0.5})
-    error = sess.run(model.error, {
-        data: test.data, target: test.target, dropout: 1})
+#    batch_data = np.array([train_tfidf.toarray()]*model.num_hidden)
+#    batch_target = np.array([train_labels]*model.num_hidden)
+#    sess.run(model.optimize, {
+#            data: batch_data, target: batch_target, dropout: 0.5})
+#    error = sess.run(model.error, {
+#        data: test.data, target: test.target, dropout: 1})
+#    print('Epoch {:2d} error {:3.1f}%'.format(epoch + 1, 100 * error))
+    sess.run(model.optimize, {data: train.data, target: train.target, dropout: 0.5})
+    error = sess.run(model.error, {data: test.data, target: test.target, dropout: 1})
     print('Epoch {:2d} error {:3.1f}%'.format(epoch + 1, 100 * error))
-    
-t1 = time.time()
-print('Code run-time: ',t1-t0,'seconds')
 
+pdb.set_trace()
 
 if __name__ == '__main__':
     main()
+    
+t1 = time.time()
+print('Code run-time: ',t1-t0,'seconds')
