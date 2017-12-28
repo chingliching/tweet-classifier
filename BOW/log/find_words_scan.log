@@ -1,0 +1,124 @@
+2017-12-28 14:56:36,860 - tensorflow - INFO - Using default config.
+2017-12-28 14:56:36,872 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp6zot6d50
+2017-12-28 14:56:36,885 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp6zot6d50', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a3cfd4be0>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 14:57:29,870 - tensorflow - INFO - Using default config.
+2017-12-28 14:57:29,870 - tensorflow - INFO - Using default config.
+2017-12-28 14:57:29,878 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh
+2017-12-28 14:57:29,878 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh
+2017-12-28 14:57:29,884 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a2c2779b0>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 14:57:29,884 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a2c2779b0>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 14:57:34,639 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 14:57:34,639 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 14:57:42,087 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh/model.ckpt.
+2017-12-28 14:57:42,087 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh/model.ckpt.
+2017-12-28 14:57:43,771 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 14:57:43,771 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 14:57:57,961 - tensorflow - INFO - global_step/sec: 7.0469
+2017-12-28 14:57:57,961 - tensorflow - INFO - global_step/sec: 7.0469
+2017-12-28 14:57:57,972 - tensorflow - INFO - loss = 333.693, step = 101 (14.200 sec)
+2017-12-28 14:57:57,972 - tensorflow - INFO - loss = 333.693, step = 101 (14.200 sec)
+2017-12-28 14:58:11,413 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh/model.ckpt.
+2017-12-28 14:58:11,413 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh/model.ckpt.
+2017-12-28 14:58:12,831 - tensorflow - INFO - Loss for final step: 229.688.
+2017-12-28 14:58:12,831 - tensorflow - INFO - Loss for final step: 229.688.
+2017-12-28 15:00:43,249 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh/model.ckpt-200
+2017-12-28 15:00:43,249 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpbcb2akmh/model.ckpt-200
+2017-12-28 15:04:12,335 - tensorflow - INFO - Using default config.
+2017-12-28 15:04:12,335 - tensorflow - INFO - Using default config.
+2017-12-28 15:04:12,335 - tensorflow - INFO - Using default config.
+2017-12-28 15:04:12,344 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_
+2017-12-28 15:04:12,344 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_
+2017-12-28 15:04:12,344 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_
+2017-12-28 15:04:12,350 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a462590b8>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 15:04:12,350 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a462590b8>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 15:04:12,350 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a462590b8>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 15:04:15,812 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 15:04:15,812 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 15:04:15,812 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 15:04:22,413 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_/model.ckpt.
+2017-12-28 15:04:22,413 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_/model.ckpt.
+2017-12-28 15:04:22,413 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_/model.ckpt.
+2017-12-28 15:04:23,860 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 15:04:23,860 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 15:04:23,860 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 15:04:37,340 - tensorflow - INFO - global_step/sec: 7.41784
+2017-12-28 15:04:37,340 - tensorflow - INFO - global_step/sec: 7.41784
+2017-12-28 15:04:37,340 - tensorflow - INFO - global_step/sec: 7.41784
+2017-12-28 15:04:37,351 - tensorflow - INFO - loss = 319.617, step = 101 (13.491 sec)
+2017-12-28 15:04:37,351 - tensorflow - INFO - loss = 319.617, step = 101 (13.491 sec)
+2017-12-28 15:04:37,351 - tensorflow - INFO - loss = 319.617, step = 101 (13.491 sec)
+2017-12-28 15:04:52,259 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_/model.ckpt.
+2017-12-28 15:04:52,259 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_/model.ckpt.
+2017-12-28 15:04:52,259 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_/model.ckpt.
+2017-12-28 15:04:54,309 - tensorflow - INFO - Loss for final step: 237.024.
+2017-12-28 15:04:54,309 - tensorflow - INFO - Loss for final step: 237.024.
+2017-12-28 15:04:54,309 - tensorflow - INFO - Loss for final step: 237.024.
+2017-12-28 15:05:24,913 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_/model.ckpt-200
+2017-12-28 15:05:24,913 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_/model.ckpt-200
+2017-12-28 15:05:24,913 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmp79labzn_/model.ckpt-200
+2017-12-28 15:14:59,207 - tensorflow - INFO - Using default config.
+2017-12-28 15:14:59,207 - tensorflow - INFO - Using default config.
+2017-12-28 15:14:59,207 - tensorflow - INFO - Using default config.
+2017-12-28 15:14:59,207 - tensorflow - INFO - Using default config.
+2017-12-28 15:14:59,222 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf
+2017-12-28 15:14:59,222 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf
+2017-12-28 15:14:59,222 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf
+2017-12-28 15:14:59,222 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf
+2017-12-28 15:14:59,230 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1c50b20320>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 15:14:59,230 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1c50b20320>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 15:14:59,230 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1c50b20320>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 15:14:59,230 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1c50b20320>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 15:15:00,730 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 15:15:00,730 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 15:15:00,730 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 15:15:00,730 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 15:15:06,994 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt.
+2017-12-28 15:15:06,994 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt.
+2017-12-28 15:15:06,994 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt.
+2017-12-28 15:15:06,994 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt.
+2017-12-28 15:15:08,186 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 15:15:08,186 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 15:15:08,186 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 15:15:08,186 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 15:15:21,294 - tensorflow - INFO - global_step/sec: 7.6285
+2017-12-28 15:15:21,294 - tensorflow - INFO - global_step/sec: 7.6285
+2017-12-28 15:15:21,294 - tensorflow - INFO - global_step/sec: 7.6285
+2017-12-28 15:15:21,294 - tensorflow - INFO - global_step/sec: 7.6285
+2017-12-28 15:15:21,302 - tensorflow - INFO - loss = 324.685, step = 101 (13.115 sec)
+2017-12-28 15:15:21,302 - tensorflow - INFO - loss = 324.685, step = 101 (13.115 sec)
+2017-12-28 15:15:21,302 - tensorflow - INFO - loss = 324.685, step = 101 (13.115 sec)
+2017-12-28 15:15:21,302 - tensorflow - INFO - loss = 324.685, step = 101 (13.115 sec)
+2017-12-28 15:15:34,232 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt.
+2017-12-28 15:15:34,232 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt.
+2017-12-28 15:15:34,232 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt.
+2017-12-28 15:15:34,232 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt.
+2017-12-28 15:15:35,538 - tensorflow - INFO - Loss for final step: 226.442.
+2017-12-28 15:15:35,538 - tensorflow - INFO - Loss for final step: 226.442.
+2017-12-28 15:15:35,538 - tensorflow - INFO - Loss for final step: 226.442.
+2017-12-28 15:15:35,538 - tensorflow - INFO - Loss for final step: 226.442.
+2017-12-28 15:15:36,143 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt-200
+2017-12-28 15:15:36,143 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt-200
+2017-12-28 15:15:36,143 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt-200
+2017-12-28 15:15:36,143 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpkj65xjdf/model.ckpt-200
+2017-12-28 15:17:49,912 - tensorflow - INFO - Using default config.
+2017-12-28 15:17:49,912 : INFO : Using default config.
+2017-12-28 15:17:49,914 - tensorflow - WARNING - Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0
+2017-12-28 15:17:49,914 : WARNING : Using temporary folder as model directory: /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0
+2017-12-28 15:17:49,916 - tensorflow - INFO - Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a117c0a90>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 15:17:49,916 : INFO : Using config: {'_model_dir': '/var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0', '_tf_random_seed': None, '_save_summary_steps': 100, '_save_checkpoints_steps': None, '_save_checkpoints_secs': 600, '_session_config': None, '_keep_checkpoint_max': 5, '_keep_checkpoint_every_n_hours': 10000, '_log_step_count_steps': 100, '_service': None, '_cluster_spec': <tensorflow.python.training.server_lib.ClusterSpec object at 0x1a117c0a90>, '_task_type': 'worker', '_task_id': 0, '_master': '', '_is_chief': True, '_num_ps_replicas': 0, '_num_worker_replicas': 1}
+2017-12-28 15:17:50,194 - tensorflow - INFO - Create CheckpointSaverHook.
+2017-12-28 15:17:50,194 : INFO : Create CheckpointSaverHook.
+2017-12-28 15:17:51,825 - tensorflow - INFO - Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0/model.ckpt.
+2017-12-28 15:17:51,825 : INFO : Saving checkpoints for 1 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0/model.ckpt.
+2017-12-28 15:17:52,184 - tensorflow - INFO - loss = 3287.65, step = 1
+2017-12-28 15:17:52,184 : INFO : loss = 3287.65, step = 1
+2017-12-28 15:18:05,387 - tensorflow - INFO - global_step/sec: 7.57391
+2017-12-28 15:18:05,387 : INFO : global_step/sec: 7.57391
+2017-12-28 15:18:05,389 - tensorflow - INFO - loss = 332.339, step = 101 (13.205 sec)
+2017-12-28 15:18:05,389 : INFO : loss = 332.339, step = 101 (13.205 sec)
+2017-12-28 15:18:18,357 - tensorflow - INFO - Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0/model.ckpt.
+2017-12-28 15:18:18,357 : INFO : Saving checkpoints for 200 into /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0/model.ckpt.
+2017-12-28 15:18:18,635 - tensorflow - INFO - Loss for final step: 226.216.
+2017-12-28 15:18:18,635 : INFO : Loss for final step: 226.216.
+2017-12-28 15:18:18,794 - tensorflow - INFO - Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0/model.ckpt-200
+2017-12-28 15:18:18,794 : INFO : Restoring parameters from /var/folders/82/j4f142kd5_79ssjvmy2k_3pw0000gn/T/tmpgrgromc0/model.ckpt-200
