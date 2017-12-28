@@ -165,15 +165,35 @@ def preprocess(readfilename, writefilename):
     print("Preprocessing is done!")
     return labels, messages
 
-def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec
-    res=[]
+#def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec
+#    res=[]
+#    labels, messages = preprocess(readfilename, writefilename)
+#    model = gensim.models.Word2Vec(messages, min_count=1, size=size, iter=8)
+#    model.train(messages, total_examples=model.corpus_count, epochs=model.iter)
+#    for message in messages:
+#        res.append(np.array([np.array(model.wv[word]) for word in message]))
+#    return np.array(res), labels
+    
+def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec, use np.append
     labels, messages = preprocess(readfilename, writefilename)
+    max_length = max([len(message) for message in messages])
+    res=[]
+#    res=np.empty([0, max_length ,50], dtype=float)
     model = gensim.models.Word2Vec(messages, min_count=1, size=size, iter=8)
     model.train(messages, total_examples=model.corpus_count, epochs=model.iter)
     for message in messages:
-        res.append([model.wv[word] for word in message])
+        temp=np.empty([0, 50], dtype=float)
+        for word in message:
+            temp=np.append(temp,np.array([model.wv[word]]),axis=0)
+        while temp.shape[0]<max_length:
+            temp=np.append(temp,np.zeros((1, 50)),axis=0)
+        res.append(temp)
+    res=np.stack(res,axis=0)
+#    labels=[[(label==1)*[1,0]+(label==0)*[0,1] for _ in range(max_length)] for label in labels] 
+#Hillary is [1,0] while Trump is [0,1], this one repeats for each time step
+    labels=[(label==1)*[1,0]+(label==0)*[0,1] for label in labels] 
+    labels=np.stack(labels,axis=0)
     return res, labels
-
 
 def segment(readfilename, writefilename): #implement data segment later
     tweets,labels = tokenize(readfilename,writefilename)
@@ -197,41 +217,25 @@ def main():  #have this perform 10-fold validation
 #    rows=len(labels_temp)
     full=segment('train.csv','train_p.csv')
     train, test = sets.Split(0.9)(full)
-    data_size,input_size = train.data.shape
-    output_size = 1
-#    train=full.sample(int(len(full)*.9))
-#    test=full.difference(train)
-#    data = tf.placeholder(tf.float32, [None, rows, row_size])
-    data = tf.placeholder(tf.float32, [None, input_size])
-    target = tf.placeholder(tf.float32, [None, output_size])
+    dataset_size, max_length, input_size = train.data.shape
+    num_classes = train.target.shape[1]
+    data = tf.placeholder(tf.float32, [None, max_length, input_size])
+    target = tf.placeholder(tf.float32, [None, num_classes])
     dropout = tf.placeholder(tf.float32)
     model = SequenceClassification(data, target, dropout)
     sess = tf.Session()
     sess.run(tf.initialize_all_variables())
-    epoch=0
-#    for epoch in range(10):
-#        for _ in range(100):
-#            batch_size = 10
-#            batch_data = np.concatenate((np.array(train_tfidf.toarray()[:batch_size*_]),np.array(train_tfidf.toarray()[batch_size*(_+1):])))
-#            batch_target = np.concatenate((train_labels[:batch_size*_],train_labels[batch_size*(_+1):]))
-#            print('batch_data:',batch_data.shape)
-#            print('batch_target:',batch_target.shape)
-#            sess.run(model.optimize, {
-#                data: batch_data, target: batch_target, dropout: 0.5})
-#        error = sess.run(model.error, {
-#            data: test.data, target: test.target, dropout: 1})
-#        batch_data = np.array(train_tfidf.toarray())
-#        batch_target = np.array(train_labels)
-#    batch_data = np.array([train_tfidf.toarray()]*model.num_hidden)
-#    batch_target = np.array([train_labels]*model.num_hidden)
-#    sess.run(model.optimize, {
-#            data: batch_data, target: batch_target, dropout: 0.5})
-#    error = sess.run(model.error, {
-#        data: test.data, target: test.target, dropout: 1})
+#    epoch=0
+    for epoch in range(10):
+        for _ in range(100):
+            batch = train.sample(10)
+            sess.run(model.optimize, {
+                data: batch.data, target: batch.target, dropout: 0.5})
+        error = sess.run(model.error, {
+            data: test.data, target: test.target, dropout: 1})
+        print('Epoch {:2d} error {:3.1f}%'.format(epoch + 1, 100 * error))#    sess.run(model.optimize, {data: train.data, target: train.target, dropout: 0.5})
+#    error = sess.run(model.error, {data: test.data, target: test.target, dropout: 1})
 #    print('Epoch {:2d} error {:3.1f}%'.format(epoch + 1, 100 * error))
-    sess.run(model.optimize, {data: train.data, target: train.target, dropout: 0.5})
-    error = sess.run(model.error, {data: test.data, target: test.target, dropout: 1})
-    print('Epoch {:2d} error {:3.1f}%'.format(epoch + 1, 100 * error))
 
 pdb.set_trace()
 
