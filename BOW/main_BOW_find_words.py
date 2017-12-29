@@ -206,13 +206,14 @@ pdb.set_trace()
 result = crossValidate(train_tfidf,train_labels)
 
 def five_words(result):
-    """returns the five most distinct words for each presidential candidate"""
+    """returns five most distinct words 
+    for each presidential candidate"""
     dictionary={}
     for word in result:
         dictionary[word]=result[word][0]
-    sorted_dict = sorted(dictionary.iteritems(), key=operator.itemgetter(1), reverse=True)
-    highest5 = sorted_dict[:5].values()
-    lowest5 = sorted_dict[-5:-1].values()
+    sorted_dict = sorted(dictionary, key=dictionary.get, reverse=True)
+    highest5 = sorted_dict[:5]
+    lowest5 = sorted_dict[-6:-1]
     return [highest5, lowest5]
 
 pdb.set_trace()
