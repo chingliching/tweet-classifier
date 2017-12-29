@@ -14,7 +14,8 @@ Bag-of-words model:
 - Used TensorFlow estimator LinearClassifier to perform the training
 - This model is simple but is expensive to train. Training time per cycle: 1 min 50 sec.
 - Five most distinct words for Donald Trump: 'dc', 'immediately', 'corrupt', 'potus', 'growing'
-- Five most distinct words for Hillary Clinton:  'legislation', 'biden', 'degree', 'letting', 'duke’- A scan of hyperparameter space showed that good results were yielded for learning_rate = 1 and l1 = 5 (parameters for the FTRL optimizer), achieving an accuracy of 86.4% (see graph below)
+- Five most distinct words for Hillary Clinton:  'legislation', 'biden', 'degree', 'letting', 'duke’
+- A scan of hyperparameter space showed that good results were yielded for learning_rate = 1 and l1 = 5 (parameters for the FTRL optimizer), achieving an accuracy of 86.4% (see graph below)
 
 
 <img src="https://github.com/IvanChingLi/tweet-classifier/blob/master/BOW/log/hyperparam_plot.png" width="400">
