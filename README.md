@@ -4,6 +4,16 @@ Machine learning algorithm to classify tweets as Hillary Clinton or Donald Trump
 2. Embedded word vectors (average accuracy: 77.8%, training time per cycle: 1 min 35 sec)
 3. Recurrent neutral network (in progress).
 
+Dependencies:
+- Python 3.6.3
+- numpy==1.13.3
+- pandas==0.20.3
+- tflearn==0.3.2
+- nltk==3.2.4
+- tensorflow==1.4.0
+- gensim==3.1.0
+- scikit_learn==0.19.1
+
 The dataset:
 - The dataset contains 4743 tweets.
 - There are 2413 words that appeared at least three times but are not regular English stop words (e.g. the, but).
