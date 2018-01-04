@@ -13,7 +13,7 @@ from __future__ import print_function
 
 
 import logging
-logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log/hyperparam_scan.log', level=logging.INFO)
+logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename='log/parallel_scan.log', level=logging.INFO)
 
 
 
@@ -23,7 +23,7 @@ log.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 
-fh = logging.FileHandler('log/hyperparam_scan.log')
+fh = logging.FileHandler('log/parallel_scan.log')
 fh.setLevel(logging.DEBUG)
 fh.setFormatter(formatter)
 log.addHandler(fh)
@@ -117,7 +117,7 @@ def preprocess(readfilename, writefilename):
 #            print('temp_sentence: ',temp_sentence)
 #            if line_num==23:
 #                return 1,2
-        messages.append(temp_sentence)
+        messages.append(temp_sentence.split())
 #        print(temp_sentence)
         writer.write(temp_sentence)
     writer.close()
@@ -137,8 +137,9 @@ def tokenize(readfilename, writefilename,size=25): #Tokenize with Word2Vec
     return res, labels, None #None to account for vocab
 
 
-def crossValidate(train_tfidf, train_labels, size=25, learning_rate=1, l1=5): #values of hyperparams from previous scan
+def crossValidate(size, learning_rate=1, l1=5): #values of hyperparams from previous scan
     """perform 10-fold cross-validation, returns average accuracy and min accuracy"""
+    train_tfidf,train_labels,vocab = tokenize('train.csv','train_p.csv',size=size)
     accuracies=[]
     num_train = len(train_tfidf)
     valid_size = num_train//10
@@ -165,23 +166,33 @@ def crossValidate(train_tfidf, train_labels, size=25, learning_rate=1, l1=5): #v
 #        train_metrics = estimator.evaluate(input_fn=train_input_fn)
         eval_metrics = estimator.evaluate(input_fn=eval_input_fn)
         accuracies.append(eval_metrics['accuracy'])
-        log.info('Average accuracy = '+str(np.array(accuracies).mean())+'; Min accuracy = '+str(np.array(accuracies).min()))
+    log.info('Average accuracy = '+str(np.array(accuracies).mean())+'; Min accuracy = '+str(np.array(accuracies).min()))
+    log.info('mean accuracy = '+str(np.array(accuracies).mean())+' for embedding size ='+str(size))
     return np.array(accuracies).mean()
 
 
-def scanHyperparams(readfilename,writefilename):
+def scanHyperparams():
     result = {} #key: size of embedded vector, value: mean accuracy in 10-fold CV
-    all_res = []
-    for size in [5*k for k in range(1,16)]:
-        train_tfidf,train_labels,vocab = tokenize(readfilename,writefilename,size=size)
-        mean_acc = crossValidate(train_tfidf, train_labels, size=size)
-        log.info('mean accuracy = '+str(mean_acc)+' for embedding size ='+str(size))
-        result[size]=mean_acc
-        all_res.append([size, mean_acc])
-    return [max(result.values()), max(result,key=result.get)], result
+    from multiprocessing import Pool
+    params_set = [5*k for k in range(1,11)]
+    agents = 5
+    with Pool(processes=agents) as pool: #parallel processing
+        mean_acc = pool.map(crossValidate, params_set)
+    for size,acc in zip(params_set,mean_acc):
+        result[size]=acc
+    log.info('final result from scanHyperparams(): '+str(result))
+    return result
 
+def scan_repeat(num):
+    """scan multiple times to cancel out statistical noise"""
+    res=[]
+    for i in range(num):
+        result = scanHyperparams()
+        res.append(result)
+    log.info('final result from scan_repeat(): '+str(res))
+    return res
 
-best_result, res_dict = scanHyperparams('train.csv','train_p.csv')
+res=scan_repeat(4)
 
 t1 = time.time()
 print('Code run-time: ',t1-t0,'seconds')
