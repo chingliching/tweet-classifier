@@ -20,7 +20,7 @@ from tensorflow.contrib import rnn
 t0 = time.time()
 
 import logging
-filename='log/main2_log.log'
+filename='log/main_log.log'
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename=filename, level=logging.INFO)
 log=logging
 #This is how you log within Spyder
@@ -125,135 +125,205 @@ def segment(readfilename, writefilename,**kwargs): #write into data segment (dat
     full.__setitem__('length',X_train_length)
     return full, vocab_dict, embedding_matrix
 
-# Training Parameters
-training_steps = 1
-batch_size = 93
-display_step = 50
-embed_size = 50
 
-full, vocab_dict, embedding_matrix = segment('train.csv','train_p.csv',size=embed_size)
+def split(full,num):
+    """returns the num-th partition of 10-fold cross validation (0 to 9)
+    full: sets.core.dataset.Dataset object
+    num: int
+    rtype: (Dataset, Dataset)"""
+    validation_size = len(full)//10
+    data=full.data.tolist()
+    target=full.target.tolist()
+    length=full.length.tolist()
+    for _ in range(num*validation_size):
+        data.insert(0,data.pop())
+        target.insert(0,target.pop())
+        length.insert(0,length.pop())
+    data=np.array(data)
+    target=np.array(target)
+    length=np.array(length)
+    full = sets.core.dataset.Dataset(data=data,target=target)
+    full.__setitem__('length',length)
+    train, validation = sets.Split(0.9)(full)
+    return train, validation
 
-
-
-# Network Parameters
-num_input = 1
-time_step = full.data.shape[1]
-num_hidden = 20
-num_classes = 2
-
-# tf Graph input
-X = tf.placeholder(tf.int32, [None, time_step])
-X_length = tf.placeholder(tf.int32, [None])
-#embedding = tf.Variable(embedding_matrix)
-Y = tf.placeholder(tf.float16, [None, num_classes])
-
-# Define weights
-weights = {
-    'out': tf.Variable(tf.random_normal([num_hidden, num_classes]))
-}
-biases = {
-    'out': tf.Variable(tf.random_normal([num_classes]))
-}
-
-def RNN(x,x_length,weights,biases):
-    """x: rank-1, x_length: rank-0, weights: rank-2, biases: rank-1
-    rtype: rank-1"""
-    batch_size_tmp = tf.shape(x)[0]
-    embedding = tf.get_variable('embedding', [len(vocab_dict), embed_size])
-    embed = [tf.nn.embedding_lookup(embedding, row)
-             for row in tf.split(x, batch_size)]
-    embed = tf.reshape(embed, (batch_size_tmp, time_step, embed_size))
-    embed = tf.unstack(embed, time_step, 1)
+def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, embed_size=50, **kwargs):
     
-    lstm_cell = rnn.BasicLSTMCell(num_hidden)
-    cell = tf.contrib.rnn.DropoutWrapper(lstm_cell, output_keep_prob=0.5)
-    cell = rnn.MultiRNNCell([cell] * 1)
-    outputs, states = rnn.static_rnn(
-            cell, dtype=tf.float32, sequence_length=x_length, inputs=embed)
+    full = kwargs['full']
+    vocab_dict = kwargs['vocab_dict']
+    embedding_matrix = kwargs['embedding_matrix']
     
-    outputs = tf.stack(outputs)
-    outputs = tf.transpose(outputs, [1, 0, 2])
+    tf.reset_default_graph()  #resets graph
+    
+#    full, vocab_dict, embedding_matrix = segment('train.csv','train_p.csv',size=embed_size)
 
-    index = tf.range(0, batch_size_tmp) * \
-        full.data.shape[1] + tf.reshape(x_length - 1, [batch_size_tmp])
-    outputs = tf.gather(tf.reshape(outputs, [-1, num_hidden]), index)
+    # Network Parameters
+    num_input = 1
+    time_step = full.data.shape[1]
+    num_classes = 2
+    
+    # tf Graph input
+    X = tf.placeholder(tf.int32, [None, time_step])
+    X_length = tf.placeholder(tf.int32, [None])
+    #embedding = tf.Variable(embedding_matrix)
+    Y = tf.placeholder(tf.float16, [None, num_classes])
+    
+    # Define weights
+    weights = {
+        'out': tf.Variable(tf.random_normal([num_hidden, num_classes]))
+    }
+    biases = {
+        'out': tf.Variable(tf.random_normal([num_classes]))
+    }
+    
+    def RNN(x,x_length,weights,biases):
+        """x: rank-1, x_length: rank-0, weights: rank-2, biases: rank-1
+        rtype: rank-1"""
+        batch_size_tmp = tf.shape(x)[0]
+        embedding = tf.get_variable('embedding', [len(vocab_dict), embed_size])
+        embed = [tf.nn.embedding_lookup(embedding, row)
+                 for row in tf.split(x, batch_size)]
+        embed = tf.reshape(embed, (batch_size_tmp, time_step, embed_size))
+        embed = tf.unstack(embed, time_step, 1)
+        
+        lstm_cell = rnn.BasicLSTMCell(num_hidden)
+        cell = tf.contrib.rnn.DropoutWrapper(lstm_cell, output_keep_prob=dropout)
+        cell = rnn.MultiRNNCell([cell] * 1)
+        outputs, states = rnn.static_rnn(
+                cell, dtype=tf.float32, sequence_length=x_length, inputs=embed)
+        
+        outputs = tf.stack(outputs)
+        outputs = tf.transpose(outputs, [1, 0, 2])
+    
+        index = tf.range(0, batch_size_tmp) * \
+            full.data.shape[1] + tf.reshape(x_length - 1, [batch_size_tmp])
+        outputs = tf.gather(tf.reshape(outputs, [-1, num_hidden]), index)
+    
+        return tf.matmul(outputs, weights['out']) + biases['out']
+    
+    logits = RNN(X, X_length, weights, biases)
+    prediction = tf.nn.softmax(logits)
+    tf.summary.histogram('logits', logits)
+    
+    loss_op = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
+        logits=logits, labels=Y))
+    
+    optimizer = tf.train.AdamOptimizer()
+    train_op = optimizer.minimize(loss_op)
+    tf.summary.scalar('loss', loss_op)
+    
+    correct_pred = tf.equal(tf.argmax(prediction, 1), tf.argmax(Y, 1))
+    accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
+    tf.summary.scalar('accuracy', accuracy)
+    
+    init = tf.global_variables_initializer()
+    
+    merged_summary = tf.summary.merge_all()
 
-    return tf.matmul(outputs, weights['out']) + biases['out']
+    t2 = time.time()
+    # Start training
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    
+    log.info('starting training for the follwing parameters: '
+    #log.info('starting training for the follwing parameters: '
+             +'training_steps='+str(training_steps)
+             +', batch_size='+str(batch_size)
+             +', embed_size='+str(embed_size)
+             +', num_hidden='+str(num_hidden)
+             +', dropout='+str(dropout))
+    
+    fold_acc=[]
+    for fold in range(10):
+        log.info('starting fold '+str(fold+1)+' in 10-fold CV')
+        with tf.Session(config=config) as sess:
+            sess.run(init)
+            train,validation = split(full,fold) 
+            previous_valid_acc=0
+            for step in range(1, training_steps + 1): 
+                for i in range(1, train.data.shape[0] // batch_size + 1): #stochastic
+                    batch=train.sample(batch_size)
+                    batch_x = batch.data
+                    batch_y = batch.target
+                    batch_x_length = batch.length
+                    batch_x_length = batch_x_length.reshape((-1))
+                    summary, _ = sess.run([merged_summary, train_op], feed_dict={
+                            X: batch_x, X_length: batch_x_length, Y: batch_y})
+                training_loss = []
+                training_acc = []
+                for i in range(1, train.data.shape[0] // batch_size + 1):
+                    batch=train.sample(batch_size)
+                    batch_x = batch.data
+                    batch_y = batch.target
+                    batch_x_length = batch.length
+                    batch_x_length = batch_x_length.reshape((-1))
+                    loss_tmp, acc_tmp = sess.run([loss_op, accuracy], feed_dict={X: batch_x, X_length: batch_x_length,
+                                                                                 Y: batch_y})
+                    training_loss.append(loss_tmp)
+                    training_acc.append(acc_tmp)
+                log.info("Step " + str(step) + ", Minibatch Loss= " +
+                      "{:.4f}".format(np.mean(training_loss)) + ", Training Accuracy= " +
+                      "{:.3f}".format(np.mean(training_acc)))
+                validation_loss=[]
+                validation_acc=[]
+                for i in range(1, validation.data.shape[0]//batch_size+1):
+                    batch=validation.sample(batch_size)
+                    batch_x = batch.data
+                    batch_y = batch.target
+                    batch_x_length = batch.length
+                    batch_x_length = batch_x_length.reshape((-1))
+                    loss_tmp, acc_tmp = sess.run([loss_op, accuracy], feed_dict={X: batch_x, X_length: batch_x_length,
+                                                                                     Y: batch_y})
+                    validation_loss.append(loss_tmp)
+                    validation_acc.append(acc_tmp)
+                log.info("Step " + str(step) + ", Validation Loss= " +
+                      "{:.4f}".format(np.mean(validation_loss)) + ", Validation Accuracy= " +
+                      "{:.3f}".format(np.mean(validation_acc)))
+                if np.mean(validation_acc)<previous_valid_acc:
+                    break
+                previous_valid_acc=np.mean(validation_acc)
+        fold_acc.append(previous_valid_acc)
+    log.info('Average accuracy is '+str(np.mean(fold_acc))+' for '
+             +'training_steps='+str(training_steps)
+             +', batch_size='+str(batch_size)
+             +', embed_size='+str(embed_size)
+             +', num_hidden='+str(num_hidden)
+             +', dropout='+str(dropout))
 
-logits = RNN(X, X_length, weights, biases)
-prediction = tf.nn.softmax(logits)
-tf.summary.histogram('logits', logits)
+    t3 = time.time()
+    log.info('This 10-fold CV run-time: '+str(t3-t2)+' seconds')
+    return np.mean(fold_acc)
 
-loss_op = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(
-    logits=logits, labels=Y))
+def scan_hyperparams():
+    """logs best combination of hyperparams so far"""
+    best_acc=0
+    best_params = [0,0]
+    res={}
+    embed_size=50
+    full, vocab_dict, embedding_matrix = segment('train.csv','train_p.csv',size=embed_size)
+    for num_hidden in [5*i for i in range(4,6)]:
+        for dropout in [.1*j for j in range(1,2)]:
+            current_acc=crossValidate(num_hidden = num_hidden,
+                                      dropout=dropout,
+                                      embed_size=embed_size,
+                                      full=full,
+                                      vocab_dict=vocab_dict, 
+                                      embedding_matrix=embedding_matrix)
+            res[num_hidden,dropout]=current_acc
+            if current_acc>best_acc:
+                best_acc=current_acc
+                best_params=[num_hidden, dropout]
+            log.info('current best: '+'accuracy='+str(best_acc)+
+                     ', num_hidden='+str(best_params[0])+', dropout='+str(best_params[1]))
+    log.info('results for all hyperparam combinations dict[num_hidden,dropout]=accuracy: '+str(res))
+    return res
 
-optimizer = tf.train.AdamOptimizer()
-train_op = optimizer.minimize(loss_op)
-tf.summary.scalar('loss', loss_op)
 
-correct_pred = tf.equal(tf.argmax(prediction, 1), tf.argmax(Y, 1))
-accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
-tf.summary.scalar('accuracy', accuracy)
+#pdb.set_trace()
 
-init = tf.global_variables_initializer()
+#current_acc=crossValidate(num_hidden = 20,dropout=0.5)
 
-merged_summary = tf.summary.merge_all()
-
-
-# Start training
-config = tf.ConfigProto()
-config.gpu_options.allow_growth = True
-
-log.info('starting training for the follwing parameters: '
-#log.info('starting training for the follwing parameters: '
-         +'training_steps='+str(training_steps)
-         +', batch_size='+str(batch_size)
-         +', embed_size='+str(embed_size)
-         +', num_hidden='+str(num_hidden))
-predict_all = []
-with tf.Session(config=config) as sess:
-    sess.run(init)
-    train,validation = sets.Split(0.9)(full) #equivalent to first iteration of 10-fold CV
-    for step in range(1, training_steps + 1): 
-        for i in range(1, train.data.shape[0] // batch_size + 1): #stochastic
-            batch=train.sample(batch_size)
-            batch_x = batch.data
-            batch_y = batch.target
-            batch_x_length = batch.length
-            batch_x_length = batch_x_length.reshape((-1))
-            summary, _ = sess.run([merged_summary, train_op], feed_dict={
-                    X: batch_x, X_length: batch_x_length, Y: batch_y})
-        loss = []
-        acc = []
-        for i in range(1, train.data.shape[0] // batch_size + 1):
-            batch=train.sample(batch_size)
-            batch_x = batch.data
-            batch_y = batch.target
-            batch_x_length = batch.length
-            batch_x_length = batch_x_length.reshape((-1))
-            loss_tmp, acc_tmp = sess.run([loss_op, accuracy], feed_dict={X: batch_x, X_length: batch_x_length,
-                                                                         Y: batch_y})
-            loss.append(loss_tmp)
-            acc.append(acc_tmp)
-        log.info("Step " + str(step) + ", Minibatch Loss= " +
-              "{:.4f}".format(np.mean(loss)) + ", Training Accuracy= " +
-              "{:.3f}".format(np.mean(acc))) 
-        validation_loss=[]
-        validation_acc=[]
-        for i in range(1, validation.data.shape[0]//batch_size+1):
-            batch=validation.sample(batch_size)
-            batch_x = batch.data
-            batch_y = batch.target
-            batch_x_length = batch.length
-            batch_x_length = batch_x_length.reshape((-1))
-            loss, acc = sess.run([loss_op, accuracy], feed_dict={X: batch_x, X_length: batch_x_length,
-                                                                             Y: batch_y})
-            validation_loss.append(loss)
-            validation_acc.append(acc)
-        log.info("Step " + str(step) + ", Validation Loss= " +
-              "{:.4f}".format(np.mean(validation_loss)) + ", Validation Accuracy= " +
-              "{:.3f}".format(np.mean(validation_acc)))
-print("Optimization Finished!")
+res=scan_hyperparams()
 
     
 t1 = time.time()
