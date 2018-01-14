@@ -23,13 +23,22 @@ The dataset:
 - This model is simple but is expensive to train. Training time per cycle: 1 min 50 sec.
 - Used the inverse-document-frequency term-frequency method to vectorize the tweets
 - Used TensorFlow estimator LinearClassifier to perform the training
-- Five most distinct words for Donald Trump: 'dc', 'immediately', 'corrupt', 'potus', 'growing'
-- Five most distinct words for Hillary Clinton:  'legislation', 'biden', 'degree', 'letting', 'duke’
-- A scan of hyperparameter space showed that good results were yielded for learning_rate = 1 and l1 = 5 (parameters for the FTRL optimizer), achieving an accuracy of 86.4% (see graph below)
-- *The most Trumpian words:*
-  - *'dc', 'immediately', 'corrupt', 'potus', 'growing', 'protesters', 'chairman', 'pols', 'crooked', 'center'*
-- *The most Clintonian words:*
-  - *'reflects', 'duke', 'letting', 'degree', 'biden', 'legislation', 'facts', 'officials', 'nominate', 'progressive'*
+- A scan of hyperparameter space showed that good results were yielded for learning_rate = 1 and l1 = 5 (parameters for the FTRL optimizer), achieving an accuracy of 86.4%
+
+| Top Trumpian Words  | Top Clintonian Words |
+| ------------- | ------------- |
+| D.C.  | reflects   |
+| immediately  | Duke   |
+| corrupt  | letting   |
+| POTUS  | degree   |
+| growing  | Biden  |
+| protesters  | legislation  |
+| chairman  | facts  |
+| pols  | officials  |
+| Crooked  | nominate  |
+| center  | progressive  |
+
+
 
 2. Embedded word vectors:
 - This model is more sophisticated than the bag-of-words model, but is cheaper to train. Training time per cycle: 1 min 35 sec.
