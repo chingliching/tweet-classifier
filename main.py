@@ -46,7 +46,7 @@ def preprocess(readfilename, writefilename):
     labels = []
     messages=[]    
     for row in reader:
-        line_num += 1
+        line_num += 1 # line_num += 1 is the same as line_num++
         if line_num % 500 == 0:
             print(line_num)
         temp_label = row[0]
@@ -296,13 +296,16 @@ def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, e
 
 def scan_hyperparams():
     """logs best combination of hyperparams so far"""
+    result = {} #key: num_hidden and dropout, value: mean accuracy in 10-fold CV
+    
+    
     best_acc=0
     best_params = [0,0]
     res={}
-    embed_size=50
+    embed_size=20 #result from BOW_embedding
     full, vocab_dict, embedding_matrix = segment('train.csv','train_p.csv',size=embed_size)
-    for num_hidden in [5*i for i in range(4,6)]:
-        for dropout in [.1*j for j in range(1,2)]:
+    for num_hidden in [5*i for i in range(4,11)]:
+        for dropout in [.1*j for j in range(1,10)]:
             current_acc=crossValidate(num_hidden = num_hidden,
                                       dropout=dropout,
                                       embed_size=embed_size,
