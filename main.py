@@ -147,11 +147,11 @@ def split(full,num):
     train, validation = sets.Split(0.9)(full)
     return train, validation
 
-def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, embed_size=50, **kwargs):
+def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, **kwargs):
     
-    full = kwargs['full']
-    vocab_dict = kwargs['vocab_dict']
-    embedding_matrix = kwargs['embedding_matrix']
+#    full = kwargs['full']
+#    vocab_dict = kwargs['vocab_dict']
+#    embedding_matrix = kwargs['embedding_matrix']
     
     tf.reset_default_graph()  #resets graph
     
@@ -276,7 +276,9 @@ def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, e
                                                                                      Y: batch_y})
                     validation_loss.append(loss_tmp)
                     validation_acc.append(acc_tmp)
-                log.info("Step " + str(step) + ", Validation Loss= " +
+                log.info("Step " + str(step) + ", num_hidden= " +
+                      "{:.4f}".format(num_hidden) + ", dropout= " +
+                      "{:.3f}".format(dropout)+ ", Validation Loss= " +
                       "{:.4f}".format(np.mean(validation_loss)) + ", Validation Accuracy= " +
                       "{:.3f}".format(np.mean(validation_acc)))
                 if np.mean(validation_acc)<previous_valid_acc:
@@ -294,40 +296,49 @@ def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, e
     log.info('This 10-fold CV run-time: '+str(t3-t2)+' seconds')
     return np.mean(fold_acc)
 
+def crossValidate_wrapper(args): #to pass multiple arguments in multiprocessing
+    return crossValidate(*args)
+
 def scan_hyperparams():
     """logs best combination of hyperparams so far"""
     result = {} #key: num_hidden and dropout, value: mean accuracy in 10-fold CV
     
-    
+    global embed_size
+    global full
+    global vocab_dict
+    global embedding_matrix
     best_acc=0
     best_params = [0,0]
     res={}
     embed_size=20 #result from BOW_embedding
     full, vocab_dict, embedding_matrix = segment('train.csv','train_p.csv',size=embed_size)
-    for num_hidden in [5*i for i in range(4,11)]:
-        for dropout in [.1*j for j in range(1,10)]:
-            current_acc=crossValidate(num_hidden = num_hidden,
-                                      dropout=dropout,
-                                      embed_size=embed_size,
-                                      full=full,
-                                      vocab_dict=vocab_dict, 
-                                      embedding_matrix=embedding_matrix)
-            res[num_hidden,dropout]=current_acc
-            if current_acc>best_acc:
-                best_acc=current_acc
-                best_params=[num_hidden, dropout]
-            log.info('current best: '+'accuracy='+str(best_acc)+
-                     ', num_hidden='+str(best_params[0])+', dropout='+str(best_params[1]))
-    log.info('results for all hyperparam combinations dict[num_hidden,dropout]=accuracy: '+str(res))
-    return res
+    
+    num_hidden_range = range(20,55,5)
+    dropout_range = [.05*j for j in range(4,11)]
+    params = [(num_hidden,dropout) for num_hidden in num_hidden_range for dropout in dropout_range]
+
+    from multiprocessing import Pool
+    agents = 5
+    with Pool(processes=agents) as pool: #parallel processing
+        mean_acc = pool.map(crossValidate_wrapper, params)
+        
+    for param,acc in zip(params,mean_acc):
+        result[param[0],round(param[1],2)]=acc
+    log.info('results for all hyperparam combinations dict[num_hidden,dropout]=accuracy: '+str(result))
+    return result
 
 
 #pdb.set_trace()
 
 #current_acc=crossValidate(num_hidden = 20,dropout=0.5)
+def repeat_scan():
+    result=[]
+    for i in range(5):
+        res=scan_hyperparams()
+        result.append(res)
+    log.info('final result of repeat_scan() is'+str(result))
 
-res=scan_hyperparams()
+repeat_scan()
 
-    
 t1 = time.time()
 log.info('Code run-time: '+str(t1-t0)+' seconds')
