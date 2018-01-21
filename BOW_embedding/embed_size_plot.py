@@ -28,3 +28,14 @@ plt.ylabel("Accuracy from 10-fold CV")
 plt.title("Accuracy vs. Embedding Size")
 plt.savefig('embed_plot.png', bbox_inches='tight',dpi=300)
 plt.show()
+
+
+#Calculate mean and uncer of mean for embed_size=20
+mean_acc = [0.836498, 0.857806, 0.86097, 0.857595, 0.854852]
+min_acc = [0.746835, 0.805907, 0.7827, 0.778481, 0.757384]
+uncer = [m-n for m,n in zip(mean_acc,min_acc)]
+
+ans = np.array(mean_acc).mean()
+uncer = (1/5)*np.square(np.array(uncer)).sum()**(1/2)
+
+print(ans,uncer) #0.8535442 0.0361210125495
