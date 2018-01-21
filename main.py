@@ -7,7 +7,6 @@ Created on Fri Dec 29 18:03:40 2017
 
 Parts of code borrowed from J. H. Wei:
 https://jhwei.github.io/CMPS242_Machine_learning/docs/#/3/1
-(code from Danijar H. was not working...)
 """
 
 from __future__ import absolute_import
@@ -17,7 +16,6 @@ from __future__ import print_function
 import time, functools, gensim, sets, pdb, collections, tensorflow as tf, numpy as np
 from tensorflow.contrib import rnn
 
-t0 = time.time()
 
 import logging
 filename='log/main_log.log'
@@ -313,8 +311,10 @@ def scan_hyperparams():
     embed_size=20 #result from BOW_embedding
     full, vocab_dict, embedding_matrix = segment('train.csv','train_p.csv',size=embed_size)
     
-    num_hidden_range = range(20,55,5)
-    dropout_range = [.05*j for j in range(4,11)]
+#    num_hidden_range = range(20,55,5)
+#    dropout_range = [.05*j for j in range(4,11)]
+    num_hidden_range = range(1,2)
+    dropout_range = [.05*j for j in range(7,8)]
     params = [(num_hidden,dropout) for num_hidden in num_hidden_range for dropout in dropout_range]
 
     from multiprocessing import Pool
@@ -331,14 +331,40 @@ def scan_hyperparams():
 #pdb.set_trace()
 
 #current_acc=crossValidate(num_hidden = 20,dropout=0.5)
-def repeat_scan():
+def repeat_scan(num):
     result=[]
-    for i in range(5):
+    for i in range(num):
         res=scan_hyperparams()
         result.append(res)
     log.info('final result of repeat_scan() is'+str(result))
 
-repeat_scan()
+def main():
+    num=5
+    repeat_scan(num)
+    
+#combined_res={}
+#
+#for res in result:
+#    for key in res:
+#        combined_res[key]=res[key]
+#        
+#top_res={}
+#for key in combined_res:
+#    if combined_res[key]>.9:
+#        top_res[key]=combined_res[key]
+#
+#pprint(top_res)
+#
+#num_hidden=[]
+#dropout=[]
+#for key in top_res:
+#    num_hidden.append(key[0])
+#    dropout.append(key[1])
+#print(np.mean(num_hidden))
+#print(np.mean(dropout))
 
-t1 = time.time()
-log.info('Code run-time: '+str(t1-t0)+' seconds')
+if __name__ == '__main__':
+    t0=time.time()
+    main()
+    t1 = time.time()
+    log.info('Code run-time: '+str(t1-t0)+' seconds')
