@@ -2,7 +2,7 @@
 Machine learning algorithm to classify tweets as Hillary Clinton or Donald Trump. I used three methods:
 1. Bag-of-words model (average accuracy: 86.5% +/- 1.8%*, training time per cycle: 1 min 50 sec)
 2. Embedded word vectors (average accuracy: 85.3% +/- 3.6%, training time per cycle: 1 min 35 sec)
-3. Recurrent neutral network (average accuracy: 94.0%).
+3. Recurrent neutral network (average accuracy: 91.3% +/- 1.9%).
 
 *Can be thought of as 95% C.I.
 
