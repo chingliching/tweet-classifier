@@ -294,7 +294,7 @@ def train_and_visualize(num_hidden, dropout, *args,training_steps=10, batch_size
         #visualize activation of each neuron at each word in 20 tweets    
         dropout=0
         result=[] 
-        num_tweets=20 #number of tweets to observe
+        num_tweets=5 #number of tweets to observe
         batch=validation.sample(num_tweets) #change back to batch_size as needed
         batch_x = batch.data
         batch_y = batch.target
@@ -332,8 +332,8 @@ def train_and_visualize(num_hidden, dropout, *args,training_steps=10, batch_size
 
 embed_size=20
 full, vocab_dict, embedding_matrix, vocab_by_value = segment('train.csv','train_p.csv',size=embed_size)
-num_hidden=5
-dropout= 1 #this is actually 1-dropout...
+num_hidden=20
+dropout= .9 #this is actually 1-dropout...
 
 previous_valid_acc, result, batch_y = train_and_visualize(num_hidden, dropout)
 
@@ -360,7 +360,7 @@ def plot_neuron(neuron_num):
         ax.set_title('Neuron #'+str(neuron_num)+'(Overall accuracy: '+'{:.2f}'.format(previous_valid_acc)+')')
         plt.xlim(-1,1)
         plt.tight_layout()
-        plt.savefig('activations_visualized/run3/neuron'+str(neuron_num)+'tweet'+str(i))
+        plt.savefig('activations_visualized/run4/neuron'+str(neuron_num)+'tweet'+str(i))
 
             
 for neuron_num in range(num_hidden):
