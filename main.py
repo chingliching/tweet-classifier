@@ -279,10 +279,11 @@ def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, *
                       "{:.3f}".format(dropout)+ ", Validation Loss= " +
                       "{:.4f}".format(np.mean(validation_loss)) + ", Validation Accuracy= " +
                       "{:.3f}".format(np.mean(validation_acc)))
-                if np.mean(validation_acc)<previous_valid_acc:
-                    break
-                previous_valid_acc=np.mean(validation_acc)
-        fold_acc.append(previous_valid_acc)
+#                if np.mean(validation_acc)<previous_valid_acc:
+#                    break
+#                previous_valid_acc=np.mean(validation_acc)
+#        fold_acc.append(previous_valid_acc)
+        fold_acc.append(np.mean(validation_acc))
     log.info('Average accuracy is '+str(np.mean(fold_acc))+' for '
              +'training_steps='+str(training_steps)
              +', batch_size='+str(batch_size)
@@ -292,7 +293,7 @@ def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, *
 
     t3 = time.time()
     log.info('This 10-fold CV run-time: '+str(t3-t2)+' seconds')
-    return np.mean(fold_acc)
+    return np.mean(fold_acc), np.min(fold_acc)
 
 def crossValidate_wrapper(args): #to pass multiple arguments in multiprocessing
     return crossValidate(*args)
@@ -313,18 +314,20 @@ def scan_hyperparams():
     
 #    num_hidden_range = range(20,55,5)
 #    dropout_range = [.05*j for j in range(4,11)]
-    num_hidden_range = range(1,2)
-    dropout_range = [.05*j for j in range(7,8)]
+    num_hidden_range = range(1,6)
+    dropout_range = [1] #this is actually 1-dropout
     params = [(num_hidden,dropout) for num_hidden in num_hidden_range for dropout in dropout_range]
 
     from multiprocessing import Pool
     agents = 5
     with Pool(processes=agents) as pool: #parallel processing
-        mean_acc = pool.map(crossValidate_wrapper, params)
+        output= pool.map(crossValidate_wrapper, params)
         
-    for param,acc in zip(params,mean_acc):
-        result[param[0],round(param[1],2)]=acc
-    log.info('results for all hyperparam combinations dict[num_hidden,dropout]=accuracy: '+str(result))
+    for param, acc in zip(params,output):
+        mean_acc=acc[0]
+        min_acc=acc[1]
+        result[param[0],round(param[1],2)]=mean_acc, mean_acc-min_acc
+    log.info('results for all hyperparam combinations dict[num_hidden,dropout]=accuracy, uncer: '+str(result))
     return result
 
 
