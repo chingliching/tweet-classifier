@@ -35,55 +35,86 @@ tf.reset_default_graph()  #resets graph
 import csv
 from nltk.tokenize import sent_tokenize, word_tokenize, TweetTokenizer
 
+def combine_csv(file1,file2):
+    labels1,messages1=preprocess(file1,file1[:-4]+'_p.csv')
+    labels2,messages2=preprocess(file2,file2[:-4]+'_p.csv')
+    combined_labels = []
+    combined_messages = []
+    while labels1 and labels2:
+        combined_labels.append(labels1.pop(0))
+        combined_labels.append(labels2.pop(0))
+    while messages1 and messages2:
+        combined_messages.append(messages1.pop(0))
+        combined_messages.append(messages2.pop(0))
+    combined_labels += labels1 + labels2
+    combined_messages += messages1 + messages2
+    return combined_labels, combined_messages
+    
 def preprocess(readfilename, writefilename):
     print("Preprocessing...")
-    reader = csv.reader(open(readfilename, encoding="utf8"))
-    writer = open(writefilename,'w', encoding="utf8")
-    line_num = 0
-    next(reader)
-    labels = []
-    messages=[]    
-    for row in reader:
-        line_num += 1 # line_num += 1 is the same as line_num++
-        if line_num % 500 == 0:
-            print(line_num)
-        temp_label = row[0]
-        temp_text = row[1]
-        #get the train label list
-        if temp_label == 'realDonaldTrump':
-            labels.append(0)
-        elif temp_label == 'HillaryClinton':
-            labels.append(1)
-        words = TweetTokenizer().tokenize(temp_text)
-        for word in words:
-            if word.startswith('http'):
-                words[words.index(word)] = '<url>'
-            if word.startswith('@'):
-                words[words.index(word)] = '<@mention>'
-            if word.startswith('#'):
-                words[words.index(word)] = '<hashtag>'
-            if word[0].isdigit():
-                words[words.index(word)] = '<num>'
-#            if word.endswith('...'): #for some reason some characters are turned into ellipsis, e.g. 'clicks'->'cl...'
-#                words.pop(words.index(word))                 
-        words_lower = [w.lower() for w in words]
-        word_num = 0
-        temp_sentence = ""
-        for temp_word in words_lower:
-            word_num += 1
-            if word_num == 1:
-                temp_sentence += temp_word
-            else:
-                temp_sentence += " " + temp_word
-        temp_sentence += "\n"
-        messages.append(temp_sentence.split())
-        writer.write(temp_sentence)
-    writer.close()
+    try:
+        reader = csv.reader(open(writefilename, encoding="utf8"),delimiter=';')
+        labels = []
+        messages=[]
+        for row in reader:
+            if row[0] == 'realDonaldTrump':
+                labels.append(0)
+            elif row[0] == 'HillaryClinton':
+                labels.append(1)
+            messages.append(row[1].split())
+    except FileNotFoundError:        
+        reader = csv.reader(open(readfilename,encoding='utf8'))
+        writer = open(writefilename,'w', encoding="utf8")
+        line_num = 0
+        next(reader)
+        labels = []
+        messages=[]    
+        for row in reader:
+            line_num += 1 # line_num += 1 is the same as line_num++
+            if line_num % 500 == 0:
+                print(line_num)
+#            temp_label = row[0]
+            temp_label = 'realDonaldTrump'
+            temp_text = row[1]
+            #get the train label list
+            if temp_label == 'realDonaldTrump':
+                labels.append(0)
+            elif temp_label == 'HillaryClinton':
+                labels.append(1)
+            words = TweetTokenizer().tokenize(temp_text)
+            for word in words:
+                if 'pic.twitter.com' in word:
+                    words[words.index(word)] = '<pic>'
+                elif word.startswith('http'):
+                    words[words.index(word)] = '<url>'
+                elif word.startswith('@'):
+                    words[words.index(word)] = '<@mention>'
+                elif word.startswith('#'):
+                    words[words.index(word)] = '<hashtag>'
+                elif word[0].isdigit():
+                    words[words.index(word)] = '<num>'
+    #            if word.endswith('...'): #for some reason some characters are turned into ellipsis, e.g. 'clicks'->'cl...'
+    #                words.pop(words.index(word))                 
+            words_lower = [w.lower() for w in words]
+            word_num = 0
+            temp_sentence = ""
+            for temp_word in words_lower:
+                word_num += 1
+                if word_num == 1:
+                    temp_sentence += temp_word
+                else:
+                    temp_sentence += " " + temp_word
+            temp_sentence += "\n"
+            messages.append(temp_sentence.split())
+            writer.write(temp_label+';')
+            writer.write(temp_sentence)
+        writer.close()
     print("Preprocessing is done!")
     return labels, messages
+
     
 def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec, use np.append
-    labels, messages = preprocess(readfilename, writefilename)
+    labels, messages = combine_csv(readfilename, writefilename)
     X_train_length = [len(message) for message in messages]
     max_length = max(X_train_length)
     model = gensim.models.Word2Vec(messages, min_count=1, size=size, iter=8)
@@ -284,7 +315,7 @@ def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, *
 #                previous_valid_acc=np.mean(validation_acc)
 #        fold_acc.append(previous_valid_acc)
         fold_acc.append(np.mean(validation_acc))
-    log.info('Average accuracy is '+str(np.mean(fold_acc))+' for '
+    log.info('Average accuracy is '+str(np.mean(fold_acc))+' and minimum accuracy is '+str(np.min(fold_acc))+'for '
              +'training_steps='+str(training_steps)
              +', batch_size='+str(batch_size)
              +', embed_size='+str(embed_size)
@@ -300,23 +331,21 @@ def crossValidate_wrapper(args): #to pass multiple arguments in multiprocessing
 
 def scan_hyperparams():
     """logs best combination of hyperparams so far"""
-    result = {} #key: num_hidden and dropout, value: mean accuracy in 10-fold CV
+    result = {} #key: num_hidden and dropout, value: mean accuracy, and uncer in 10-fold CV
     
     global embed_size
     global full
     global vocab_dict
     global embedding_matrix
-    best_acc=0
-    best_params = [0,0]
-    res={}
     embed_size=20 #result from BOW_embedding
-    full, vocab_dict, embedding_matrix = segment('train.csv','train_p.csv',size=embed_size)
+    full, vocab_dict, embedding_matrix = segment('clinton_result.csv','trump_archive_result.csv',size=embed_size)
     
 #    num_hidden_range = range(20,55,5)
 #    dropout_range = [.05*j for j in range(4,11)]
-    num_hidden_range = range(1,6)
+    num_hidden_range = range(2,3)
     dropout_range = [1] #this is actually 1-dropout
     params = [(num_hidden,dropout) for num_hidden in num_hidden_range for dropout in dropout_range]
+    params=params*5
 
     from multiprocessing import Pool
     agents = 5
@@ -342,7 +371,7 @@ def repeat_scan(num):
     log.info('final result of repeat_scan() is'+str(result))
 
 def main():
-    num=5
+    num=1
     repeat_scan(num)
     
 #combined_res={}
