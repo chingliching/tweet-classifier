@@ -2,13 +2,13 @@
 Machine learning algorithm to classify tweets as Hillary Clinton or Donald Trump. I used three methods:
 1. Bag-of-words model (average accuracy: 86.5% +/- 1.8%*)
 2. Embedded word vectors (average accuracy: 85.3% +/- 3.6%)
-3. Recurrent neutral network (average accuracy: 91.3% +/- 1.9%).
+3. Recurrent neural network (average accuracy: 95.2% +/- 3.6%).
 
 *Can be thought of as 95% C.I.
 
 <h2>Interesting Findings</h2>
 
-1. Certain words distinguish the two politicians from each other.
+1. Certain words distinguished the two politicians from each other.
 
 | Top Trumpian Words  | Top Clintonian Words |
 | ------------- | ------------- |
@@ -41,8 +41,9 @@ Dependencies:
 - scikit_learn==0.19.1
 
 The dataset:
-- The dataset contains 4743 tweets.
-- There are 2413 words that appeared at least three times but are not regular English stop words (e.g. the, but).
+- I analyzed the tweets in the one-year period leading up to the 2016 election (Nov. 8, 2015 - Nov. 7, 2016).
+- The dataset contains 9975 tweets, 5629 from Hillary Clinton and 4346 from Donald Trump.
+- There were 12107 unique words.
 - Preprocessing: for some words the category is more important than the actual meaning; therefore to avoid overfitting I replace all urls, @mentions, #hashtags, and numbers with 'url', '@mention', 'hashtag', and 'num', respectively
 
 1. Bag-of-words model:
@@ -55,9 +56,10 @@ The dataset:
 - This model is more sophisticated than the bag-of-words model, but is cheaper to train. Training time per cycle: 1 min 35 sec.
 - Used a Word2Vec model to vectorize the tweets (implemented through the gensim package)
 - My results show that the accuracy saturates at an embedding size of around 20 (see plot below).
-- Using word embedding allows tremendous dimensionality reduction (from 2413 dimensions in the bag-of-words model to 20  dimensions) with minimal decrease in accuracy (86.4% and 85.8% are statistically indistinguishable given the uncertainties).
+- Using word embedding allows tremendous dimensionality reduction (from 2413 dimensions in the bag-of-words model to 20  dimensions) with minimal decrease in accuracy (86.5% and 85.3% are statistically indistinguishable given the uncertainties).
 
 
 3. Recurrent neural network
-- Use LSTM (long short term memory) cell with dropout
+- Used LSTM (long short term memory) cell with dropout, achieved average accuracy of 95.2%.
+- Performance does not improve beyond two neurons (one layer).
 
