@@ -9,11 +9,8 @@ Parts of code borrowed from J. H. Wei:
 https://jhwei.github.io/CMPS242_Machine_learning/docs/#/3/1
 """
 
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
 
-import time, functools, gensim, sets, pdb, collections, tensorflow as tf, numpy as np
+import time, gensim, sets, pdb, collections, tensorflow as tf, numpy as np
 from tensorflow.contrib import rnn
 
 
@@ -24,16 +21,14 @@ log=logging
 #This is how you log within Spyder
 ##log.info('this is a test message')
 
-import os
 import tempfile
 TEMP_FOLDER = tempfile.gettempdir()
 print('Folder "{}" will be used to save temporary dictionary and corpus.'.format(TEMP_FOLDER))
 
 tf.reset_default_graph()  #resets graph
 
-
 import csv
-from nltk.tokenize import sent_tokenize, word_tokenize, TweetTokenizer
+from nltk.tokenize import TweetTokenizer
 
 def combine_csv(file1,file2):
     labels1,messages1=preprocess(file1,file1[:-4]+'_p.csv')
@@ -93,8 +88,6 @@ def preprocess(readfilename, writefilename):
                     words[words.index(word)] = '<hashtag>'
                 elif word[0].isdigit():
                     words[words.index(word)] = '<num>'
-    #            if word.endswith('...'): #for some reason some characters are turned into ellipsis, e.g. 'clicks'->'cl...'
-    #                words.pop(words.index(word))                 
             words_lower = [w.lower() for w in words]
             word_num = 0
             temp_sentence = ""
@@ -119,7 +112,7 @@ def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec, use 
     max_length = max(X_train_length)
     model = gensim.models.Word2Vec(messages, min_count=1, size=size, iter=8)
     model.train(messages, total_examples=model.corpus_count, epochs=model.iter)
-#Hillary is [1,0] while Trump is [0,1]
+    #Hillary is [1,0] while Trump is [0,1]
     labels=[(label==1)*[1,0]+(label==0)*[0,1] for label in labels] 
     labels=np.stack(labels,axis=0)
     
@@ -177,17 +170,10 @@ def split(full,num):
     return train, validation
 
 def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, **kwargs):
-    
-#    full = kwargs['full']
-#    vocab_dict = kwargs['vocab_dict']
-#    embedding_matrix = kwargs['embedding_matrix']
-    
+
     tf.reset_default_graph()  #resets graph
-    
-#    full, vocab_dict, embedding_matrix = segment('train.csv','train_p.csv',size=embed_size)
 
     # Network Parameters
-    num_input = 1
     time_step = full.data.shape[1]
     num_classes = 2
     
@@ -263,58 +249,55 @@ def crossValidate(num_hidden, dropout, *args,training_steps=10, batch_size=93, *
              +', dropout='+str(dropout))
     
     fold_acc=[]
-    for fold in range(10):
-        log.info('starting fold '+str(fold+1)+' in 10-fold CV')
-        with tf.Session(config=config) as sess:
-            sess.run(init)
-            train,validation = split(full,fold) 
-            previous_valid_acc=0
-            for step in range(1, training_steps + 1): 
-                for i in range(1, train.data.shape[0] // batch_size + 1): #stochastic
-                    batch=train.sample(batch_size)
-                    batch_x = batch.data
-                    batch_y = batch.target
-                    batch_x_length = batch.length
-                    batch_x_length = batch_x_length.reshape((-1))
-                    summary, _ = sess.run([merged_summary, train_op], feed_dict={
-                            X: batch_x, X_length: batch_x_length, Y: batch_y})
-                training_loss = []
-                training_acc = []
-                for i in range(1, train.data.shape[0] // batch_size + 1):
-                    batch=train.sample(batch_size)
-                    batch_x = batch.data
-                    batch_y = batch.target
-                    batch_x_length = batch.length
-                    batch_x_length = batch_x_length.reshape((-1))
-                    loss_tmp, acc_tmp = sess.run([loss_op, accuracy], feed_dict={X: batch_x, X_length: batch_x_length,
+    fold=0 #only do one fold
+#    for fold in range(10):
+    log.info('starting fold '+str(fold+1)+' in 10-fold CV')
+    with tf.Session(config=config) as sess:
+        sess.run(init)
+        train,validation = split(full,fold) 
+        previous_valid_acc=0
+        for step in range(1, training_steps + 1): 
+            for i in range(1, train.data.shape[0] // batch_size + 1): #stochastic
+                batch=train.sample(batch_size)
+                batch_x = batch.data
+                batch_y = batch.target
+                batch_x_length = batch.length
+                batch_x_length = batch_x_length.reshape((-1))
+                summary, _ = sess.run([merged_summary, train_op], feed_dict={
+                        X: batch_x, X_length: batch_x_length, Y: batch_y})
+            training_loss = []
+            training_acc = []
+            for i in range(1, train.data.shape[0] // batch_size + 1):
+                batch=train.sample(batch_size)
+                batch_x = batch.data
+                batch_y = batch.target
+                batch_x_length = batch.length
+                batch_x_length = batch_x_length.reshape((-1))
+                loss_tmp, acc_tmp = sess.run([loss_op, accuracy], feed_dict={X: batch_x, X_length: batch_x_length,
+                                                                             Y: batch_y})
+                training_loss.append(loss_tmp)
+                training_acc.append(acc_tmp)
+            log.info("Step " + str(step) + ", Minibatch Loss= " +
+                  "{:.4f}".format(np.mean(training_loss)) + ", Training Accuracy= " +
+                  "{:.3f}".format(np.mean(training_acc)))
+            validation_loss=[]
+            validation_acc=[]
+            for i in range(1, validation.data.shape[0]//batch_size+1):
+                batch=validation.sample(batch_size)
+                batch_x = batch.data
+                batch_y = batch.target
+                batch_x_length = batch.length
+                batch_x_length = batch_x_length.reshape((-1))
+                loss_tmp, acc_tmp = sess.run([loss_op, accuracy], feed_dict={X: batch_x, X_length: batch_x_length,
                                                                                  Y: batch_y})
-                    training_loss.append(loss_tmp)
-                    training_acc.append(acc_tmp)
-                log.info("Step " + str(step) + ", Minibatch Loss= " +
-                      "{:.4f}".format(np.mean(training_loss)) + ", Training Accuracy= " +
-                      "{:.3f}".format(np.mean(training_acc)))
-                validation_loss=[]
-                validation_acc=[]
-                for i in range(1, validation.data.shape[0]//batch_size+1):
-                    batch=validation.sample(batch_size)
-                    batch_x = batch.data
-                    batch_y = batch.target
-                    batch_x_length = batch.length
-                    batch_x_length = batch_x_length.reshape((-1))
-                    loss_tmp, acc_tmp = sess.run([loss_op, accuracy], feed_dict={X: batch_x, X_length: batch_x_length,
-                                                                                     Y: batch_y})
-                    validation_loss.append(loss_tmp)
-                    validation_acc.append(acc_tmp)
-                log.info("Step " + str(step) + ", num_hidden= " +
-                      "{:.4f}".format(num_hidden) + ", dropout= " +
-                      "{:.3f}".format(dropout)+ ", Validation Loss= " +
-                      "{:.4f}".format(np.mean(validation_loss)) + ", Validation Accuracy= " +
-                      "{:.3f}".format(np.mean(validation_acc)))
-#                if np.mean(validation_acc)<previous_valid_acc:
-#                    break
-#                previous_valid_acc=np.mean(validation_acc)
-#        fold_acc.append(previous_valid_acc)
-        fold_acc.append(np.mean(validation_acc))
+                validation_loss.append(loss_tmp)
+                validation_acc.append(acc_tmp)
+            log.info("Step " + str(step) + ", num_hidden= " +
+                  "{:.4f}".format(num_hidden) + ", dropout= " +
+                  "{:.3f}".format(dropout)+ ", Validation Loss= " +
+                  "{:.4f}".format(np.mean(validation_loss)) + ", Validation Accuracy= " +
+                  "{:.3f}".format(np.mean(validation_acc)))
+    fold_acc.append(np.mean(validation_acc))
     log.info('Average accuracy is '+str(np.mean(fold_acc))+' and minimum accuracy is '+str(np.min(fold_acc))+'for '
              +'training_steps='+str(training_steps)
              +', batch_size='+str(batch_size)
@@ -345,10 +328,9 @@ def scan_hyperparams():
     num_hidden_range = range(2,3)
     dropout_range = [1] #this is actually 1-dropout
     params = [(num_hidden,dropout) for num_hidden in num_hidden_range for dropout in dropout_range]
-    params=params*5
 
     from multiprocessing import Pool
-    agents = 5
+    agents = 1
     with Pool(processes=agents) as pool: #parallel processing
         output= pool.map(crossValidate_wrapper, params)
         
@@ -359,10 +341,8 @@ def scan_hyperparams():
     log.info('results for all hyperparam combinations dict[num_hidden,dropout]=accuracy, uncer: '+str(result))
     return result
 
-
 #pdb.set_trace()
 
-#current_acc=crossValidate(num_hidden = 20,dropout=0.5)
 def repeat_scan(num):
     result=[]
     for i in range(num):
@@ -373,27 +353,6 @@ def repeat_scan(num):
 def main():
     num=1
     repeat_scan(num)
-    
-#combined_res={}
-#
-#for res in result:
-#    for key in res:
-#        combined_res[key]=res[key]
-#        
-#top_res={}
-#for key in combined_res:
-#    if combined_res[key]>.9:
-#        top_res[key]=combined_res[key]
-#
-#pprint(top_res)
-#
-#num_hidden=[]
-#dropout=[]
-#for key in top_res:
-#    num_hidden.append(key[0])
-#    dropout.append(key[1])
-#print(np.mean(num_hidden))
-#print(np.mean(dropout))
 
 if __name__ == '__main__':
     t0=time.time()
