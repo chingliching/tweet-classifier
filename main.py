@@ -44,9 +44,21 @@ def combine_csv(file1,file2):
     combined_labels += labels1 + labels2
     combined_messages += messages1 + messages2
     return combined_labels, combined_messages
-    
+
+def combine_csv_file(file1,file2,writefilename):
+    pdb.set_trace()
+
+    reader1 = csv.reader(open(file1,encoding='utf8'),delimiter=';')
+    reader2 = csv.reader(open(file2,encoding='utf8'),delimiter=';')
+    writer = open(writefilename,'w', encoding="utf8")
+    for line1,line2 in zip(reader1,reader2):
+        writer.write(line1[0]+';'+line1[1]+'\n')
+        writer.write(line2[0]+';'+line2[1]+'\n')
+    writer.close
+
 def preprocess(readfilename, writefilename):
     print("Preprocessing...")
+#    pdb.set_trace()
     try:
         reader = csv.reader(open(writefilename, encoding="utf8"),delimiter=';')
         labels = []
@@ -58,7 +70,7 @@ def preprocess(readfilename, writefilename):
                 labels.append(1)
             messages.append(row[1].split())
     except FileNotFoundError:        
-        reader = csv.reader(open(readfilename,encoding='utf8'))
+        reader = csv.reader(open(readfilename,encoding='utf8'),delimiter=';')
         writer = open(writefilename,'w', encoding="utf8")
         line_num = 0
         next(reader)
@@ -69,8 +81,8 @@ def preprocess(readfilename, writefilename):
             if line_num % 500 == 0:
                 print(line_num)
 #            temp_label = row[0]
-            temp_label = 'realDonaldTrump'
-            temp_text = row[1]
+            temp_label = 'HillaryClinton'
+            temp_text = row[4]
             #get the train label list
             if temp_label == 'realDonaldTrump':
                 labels.append(0)
@@ -82,12 +94,21 @@ def preprocess(readfilename, writefilename):
                     words[words.index(word)] = '<pic>'
                 elif word.startswith('http'):
                     words[words.index(word)] = '<url>'
-                elif word.startswith('@'):
-                    words[words.index(word)] = '<@mention>'
-                elif word.startswith('#'):
-                    words[words.index(word)] = '<hashtag>'
+#                elif word.startswith('@'):
+#                    words[words.index(word)] = '<@mention>'
+#                elif word == '#': #clinton likes to include space after hashtag
+#                    words[words.index(word)+1] = word+words[words.index(word)+1]
+#                    words.pop(words.index(word))
                 elif word[0].isdigit():
                     words[words.index(word)] = '<num>'
+            if '#' in words:
+                index = words.index('#')
+                words[index] += words[index+1]
+                words.pop(index+1)
+            if '@' in words:
+                index = words.index('@')
+                words[index] += words[index+1]
+                words.pop(index+1)
             words_lower = [w.lower() for w in words]
             word_num = 0
             temp_sentence = ""
