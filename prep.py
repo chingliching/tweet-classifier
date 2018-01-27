@@ -31,11 +31,17 @@ def combine_csv_file(file1,file2,writefilename):
     for line1,line2 in zip(reader1,reader2):
         writer.write(line1[0]+';'+line1[1]+'\n')
         writer.write(line2[0]+';'+line2[1]+'\n')
-    writer.close
+    for line1 in reader1:
+        writer.write(line1[0]+';'+line1[1]+'\n')
+    for line2 in reader2:
+        writer.write(line2[0]+';'+line2[1]+'\n')
+    writer.close()
 
-def preprocess(readfilename, writefilename):
+def preprocess(readfilename, writefilename,write=True):
     print("Preprocessing...")
     try:
+        if write==False:
+            raise FileNotFoundError
         reader = csv.reader(open(writefilename, encoding="utf8"),delimiter=';')
         labels = []
         messages=[]
@@ -45,20 +51,24 @@ def preprocess(readfilename, writefilename):
             elif row[0] == 'HillaryClinton':
                 labels.append(1)
             messages.append(row[1].split())
-    except FileNotFoundError:        
+    except FileNotFoundError:
+        if 'clinton' in readfilename:
+            temp_label='HillaryClinton'
+            tweet_loc = 4
+        elif 'trump' in readfilename:
+            temp_label='realDonaldTrump'
+            tweet_loc = 1
         reader = csv.reader(open(readfilename,encoding='utf8'),delimiter=';')
         writer = open(writefilename,'w', encoding="utf8")
         line_num = 0
         next(reader)
         labels = []
-        messages=[]    
+        messages=[]
         for row in reader:
             line_num += 1 # line_num += 1 is the same as line_num++
             if line_num % 500 == 0:
                 print(line_num)
-#            temp_label = row[0]
-            temp_label = 'HillaryClinton'
-            temp_text = row[4]
+            temp_text = row[tweet_loc]
             #get the train label list
             if temp_label == 'realDonaldTrump':
                 labels.append(0)

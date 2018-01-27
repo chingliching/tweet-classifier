@@ -24,7 +24,7 @@ import tempfile
 TEMP_FOLDER = tempfile.gettempdir()
 print('Folder "{}" will be used to save temporary dictionary and corpus.'.format(TEMP_FOLDER))
 
-from preprocess import parse_file
+from prep import parse_file
 
 def tokenize(file,size=50): #Tokenize with Word2Vec, use np.append
     labels, messages = parse_file(file)
@@ -241,7 +241,7 @@ def scan_hyperparams():
     global vocab_dict
     global embedding_matrix
     embed_size=20 #result from BOW_embedding
-    full, vocab_dict, embedding_matrix = segment('clinton_result.csv','trump_archive_result.csv',size=embed_size)
+    full, vocab_dict, embedding_matrix = segment('train.csv',size=embed_size)
     
 #    num_hidden_range = range(20,55,5)
 #    dropout_range = [.05*j for j in range(4,11)]
