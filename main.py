@@ -13,7 +13,6 @@ https://jhwei.github.io/CMPS242_Machine_learning/docs/#/3/1
 import time, gensim, sets, pdb, collections, tensorflow as tf, numpy as np
 from tensorflow.contrib import rnn
 
-
 import logging
 filename='log/main_log.log'
 logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s',filename=filename, level=logging.INFO)
@@ -25,110 +24,10 @@ import tempfile
 TEMP_FOLDER = tempfile.gettempdir()
 print('Folder "{}" will be used to save temporary dictionary and corpus.'.format(TEMP_FOLDER))
 
-tf.reset_default_graph()  #resets graph
+from preprocess import parse_file
 
-import csv
-from nltk.tokenize import TweetTokenizer
-
-def combine_csv(file1,file2):
-    labels1,messages1=preprocess(file1,file1[:-4]+'_p.csv')
-    labels2,messages2=preprocess(file2,file2[:-4]+'_p.csv')
-    combined_labels = []
-    combined_messages = []
-    while labels1 and labels2:
-        combined_labels.append(labels1.pop(0))
-        combined_labels.append(labels2.pop(0))
-    while messages1 and messages2:
-        combined_messages.append(messages1.pop(0))
-        combined_messages.append(messages2.pop(0))
-    combined_labels += labels1 + labels2
-    combined_messages += messages1 + messages2
-    return combined_labels, combined_messages
-
-def combine_csv_file(file1,file2,writefilename):
-    pdb.set_trace()
-
-    reader1 = csv.reader(open(file1,encoding='utf8'),delimiter=';')
-    reader2 = csv.reader(open(file2,encoding='utf8'),delimiter=';')
-    writer = open(writefilename,'w', encoding="utf8")
-    for line1,line2 in zip(reader1,reader2):
-        writer.write(line1[0]+';'+line1[1]+'\n')
-        writer.write(line2[0]+';'+line2[1]+'\n')
-    writer.close
-
-def preprocess(readfilename, writefilename):
-    print("Preprocessing...")
-#    pdb.set_trace()
-    try:
-        reader = csv.reader(open(writefilename, encoding="utf8"),delimiter=';')
-        labels = []
-        messages=[]
-        for row in reader:
-            if row[0] == 'realDonaldTrump':
-                labels.append(0)
-            elif row[0] == 'HillaryClinton':
-                labels.append(1)
-            messages.append(row[1].split())
-    except FileNotFoundError:        
-        reader = csv.reader(open(readfilename,encoding='utf8'),delimiter=';')
-        writer = open(writefilename,'w', encoding="utf8")
-        line_num = 0
-        next(reader)
-        labels = []
-        messages=[]    
-        for row in reader:
-            line_num += 1 # line_num += 1 is the same as line_num++
-            if line_num % 500 == 0:
-                print(line_num)
-#            temp_label = row[0]
-            temp_label = 'HillaryClinton'
-            temp_text = row[4]
-            #get the train label list
-            if temp_label == 'realDonaldTrump':
-                labels.append(0)
-            elif temp_label == 'HillaryClinton':
-                labels.append(1)
-            words = TweetTokenizer().tokenize(temp_text)
-            for word in words:
-                if 'pic.twitter.com' in word:
-                    words[words.index(word)] = '<pic>'
-                elif word.startswith('http'):
-                    words[words.index(word)] = '<url>'
-#                elif word.startswith('@'):
-#                    words[words.index(word)] = '<@mention>'
-#                elif word == '#': #clinton likes to include space after hashtag
-#                    words[words.index(word)+1] = word+words[words.index(word)+1]
-#                    words.pop(words.index(word))
-                elif word[0].isdigit():
-                    words[words.index(word)] = '<num>'
-            if '#' in words:
-                index = words.index('#')
-                words[index] += words[index+1]
-                words.pop(index+1)
-            if '@' in words:
-                index = words.index('@')
-                words[index] += words[index+1]
-                words.pop(index+1)
-            words_lower = [w.lower() for w in words]
-            word_num = 0
-            temp_sentence = ""
-            for temp_word in words_lower:
-                word_num += 1
-                if word_num == 1:
-                    temp_sentence += temp_word
-                else:
-                    temp_sentence += " " + temp_word
-            temp_sentence += "\n"
-            messages.append(temp_sentence.split())
-            writer.write(temp_label+';')
-            writer.write(temp_sentence)
-        writer.close()
-    print("Preprocessing is done!")
-    return labels, messages
-
-    
-def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec, use np.append
-    labels, messages = combine_csv(readfilename, writefilename)
+def tokenize(file,size=50): #Tokenize with Word2Vec, use np.append
+    labels, messages = parse_file(file)
     X_train_length = [len(message) for message in messages]
     max_length = max(X_train_length)
     model = gensim.models.Word2Vec(messages, min_count=1, size=size, iter=8)
@@ -161,9 +60,9 @@ def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec, use 
 
     return res, labels, X_train_length, vocab_dict, embedding_matrix
 
-def segment(readfilename, writefilename,**kwargs): #write into data segment (database object)
+def segment(file,**kwargs): #write into data segment (database object)
     tweets,labels, X_train_length, vocab_dict, embedding_matrix = tokenize(
-            readfilename,writefilename,**kwargs)
+            file,**kwargs)
     full = sets.core.dataset.Dataset(data=tweets,target=labels)
     full.__setitem__('length',X_train_length)
     return full, vocab_dict, embedding_matrix
