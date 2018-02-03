@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title> Visualize RNN tweet classifier</title>
+		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+
+            var colorScale = d3.scaleLinear().range([-1,1]);
+            
+            d3.csv("activations.csv",function(error, data){
+                data.forEach(function(d) {
+                    d.key = d.key;
+                    d.value = +d.value;
+                });
+                
+                colorScale.domain([0,1]);   
+                
+                d3.select("body").selectAll("text")
+                    .data(data)
+                    .enter()
+                    .append("text")
+                    .text(function(d) {
+                        return ""+d.key+ " ";
+                    })
+                    .style("background", function(d) {
+                        if (colorScale(d.value)>0) {
+                            return "rgba(255,0,0," + Math.round(colorScale(d.value))+")";
+                        } else {
+                            return "rgba(0,0,255," + Math.round(-colorScale(d.value))+")";
+                        }
+                    });
+            });
+		</script>
+	</body>
+</html>
