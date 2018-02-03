@@ -8,31 +8,40 @@
 	<body>
 		<script type="text/javascript">
 
-            var colorScale = d3.scaleLinear().range([-1,1]);
+            var probScale = d3.scaleLinear().range([-1,1]);
+            probScale.domain([0,1]);  
+            var actScale = d3.scaleLinear().range([-1,1]);
+            actScale.domain([-1.5,1.5]);  //different domain for activations vs probability
             
-            d3.csv("activations.csv",function(error, data){
-                data.forEach(function(d) {
-                    d.key = d.key;
-                    d.value = +d.value;
-                });
-                
-                colorScale.domain([0,1]);   
-                
-                d3.select("body").selectAll("text")
-                    .data(data)
-                    .enter()
-                    .append("text")
-                    .text(function(d) {
-                        return ""+d.key+ " ";
-                    })
-                    .style("background", function(d) {
-                        if (colorScale(d.value)>0) {
-                            return "rgba(255,0,0," + Math.round(colorScale(d.value))+")";
-                        } else {
-                            return "rgba(0,0,255," + Math.round(-colorScale(d.value))+")";
-                        }
+            d3.csv("full_acts.csv",function(data){
+                dataset = data;
+                for (i=1; i<dataset['columns'].length; i++) {
+                    attr = dataset['columns'][i]
+                    if (attr.includes('act')) {
+                        colorScale = actScale;
+                    } else {
+                        colorScale = probScale;
+                    }
+                    
+                    d3.select("body").append("p").text("Visualizing "+attr+":")
+                    d3.select("body").append("p").selectAll("text")
+                        .data(dataset)
+                        .enter()
+                        .append("text")
+                        .text(function(d) {
+                            return ""+d["word"]+ " ";
+                        })
+                        .style("background", function(d) {
+                            if (colorScale(d[attr])>0) {
+                                return "rgba(255,0,0," + colorScale(d[attr])+")";
+                            } else {
+                                return "rgba(0,0,255," + -colorScale(d[attr])+")";
+                            }
                     });
+                }
             });
+            
 		</script>
+
 	</body>
 </html>
