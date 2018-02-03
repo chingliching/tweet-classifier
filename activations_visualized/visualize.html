@@ -4,6 +4,16 @@
 		<meta charset="utf-8">
 		<title> Visualize RNN tweet classifier</title>
 		<script type="text/javascript" src="https://d3js.org/d3.v4.min.js"></script>
+        <style type="text/css">
+            text{
+                font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+                line-height: 22px;
+                font-size: 14px;
+            }
+            p {
+                padding: 0cm 1cm 0cm 1cm;
+            }
+        </style>
 	</head>
 	<body>
 		<script type="text/javascript">
@@ -13,7 +23,7 @@
             var actScale = d3.scaleLinear().range([-1,1]);
             actScale.domain([-1.5,1.5]);  //different domain for activations vs probability
             
-            d3.csv("full_acts.csv",function(data){
+            d3.csv("to_readme/good6.csv",function(data){
                 dataset = data;
                 for (i=1; i<dataset['columns'].length; i++) {
                     attr = dataset['columns'][i]
@@ -42,6 +52,5 @@
             });
             
 		</script>
-
 	</body>
 </html>

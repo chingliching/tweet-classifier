@@ -2609,3 +2609,104 @@
 2018-01-20 10:19:05,306 : INFO : training on 797984 raw words (558662 effective words) took 0.5s, 1030412 effective words/s
 2018-01-20 10:19:25,158 : INFO : starting training for the follwing parameters: training_steps=10, batch_size=93, embed_size=20, num_hidden=1, dropout=0.35000000000000003
 2018-01-20 10:19:25,159 : INFO : starting fold 1 in 10-fold CV
+2018-02-03 09:43:25,026 : INFO : collecting all words and their counts
+2018-02-03 09:43:25,027 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2018-02-03 09:43:25,075 : INFO : collected 12052 word types from a corpus of 198351 raw words and 9482 sentences
+2018-02-03 09:43:25,075 : INFO : Loading a fresh vocabulary
+2018-02-03 09:43:25,099 : INFO : min_count=1 retains 12052 unique words (100% of original 12052, drops 0)
+2018-02-03 09:43:25,099 : INFO : min_count=1 leaves 198351 word corpus (100% of original 198351, drops 0)
+2018-02-03 09:43:25,137 : INFO : deleting the raw counts dictionary of 12052 items
+2018-02-03 09:43:25,139 : INFO : sample=0.001 downsamples 58 most-common words
+2018-02-03 09:43:25,139 : INFO : downsampling leaves estimated 145462 word corpus (73.3% of prior 198351)
+2018-02-03 09:43:25,139 : INFO : estimated required memory for 12052 words and 20 dimensions: 7954320 bytes
+2018-02-03 09:43:25,163 : INFO : resetting layer weights
+2018-02-03 09:43:25,310 : INFO : training model with 3 workers on 12052 vocabulary and 20 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-02-03 09:43:26,248 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-02-03 09:43:26,251 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-02-03 09:43:26,252 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-02-03 09:43:26,252 : INFO : training on 1586808 raw words (1163993 effective words) took 0.9s, 1244183 effective words/s
+2018-02-03 09:43:26,252 : INFO : training model with 3 workers on 12052 vocabulary and 20 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-02-03 09:43:27,134 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-02-03 09:43:27,140 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-02-03 09:43:27,142 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-02-03 09:43:27,142 : INFO : training on 1586808 raw words (1163619 effective words) took 0.9s, 1314648 effective words/s
+2018-02-03 09:43:52,714 : INFO : Step 1, Minibatch Loss= 0.4407, Training Accuracy= 0.876
+2018-02-03 09:43:52,771 : INFO : Step 1, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.4104, Validation Accuracy= 0.908
+2018-02-03 09:43:55,432 : INFO : Step 2, Minibatch Loss= 0.2147, Training Accuracy= 0.952
+2018-02-03 09:43:55,487 : INFO : Step 2, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.1983, Validation Accuracy= 0.960
+2018-02-03 09:43:58,063 : INFO : Step 3, Minibatch Loss= 0.1294, Training Accuracy= 0.978
+2018-02-03 09:43:58,120 : INFO : Step 3, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.1250, Validation Accuracy= 0.975
+2018-02-03 09:44:00,753 : INFO : Step 4, Minibatch Loss= 0.0869, Training Accuracy= 0.989
+2018-02-03 09:44:00,813 : INFO : Step 4, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.0968, Validation Accuracy= 0.976
+2018-02-03 09:44:03,435 : INFO : Step 5, Minibatch Loss= 0.0669, Training Accuracy= 0.991
+2018-02-03 09:44:03,492 : INFO : Step 5, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.0774, Validation Accuracy= 0.984
+2018-02-03 09:44:06,125 : INFO : Step 6, Minibatch Loss= 0.0471, Training Accuracy= 0.994
+2018-02-03 09:44:06,182 : INFO : Step 6, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.0786, Validation Accuracy= 0.980
+2018-02-03 09:44:06,711 : INFO : Code run-time: 41.74877429008484 seconds
+2018-02-03 10:11:34,633 : INFO : collecting all words and their counts
+2018-02-03 10:11:34,633 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2018-02-03 10:11:34,690 : INFO : collected 12052 word types from a corpus of 198351 raw words and 9482 sentences
+2018-02-03 10:11:34,690 : INFO : Loading a fresh vocabulary
+2018-02-03 10:11:34,709 : INFO : min_count=1 retains 12052 unique words (100% of original 12052, drops 0)
+2018-02-03 10:11:34,709 : INFO : min_count=1 leaves 198351 word corpus (100% of original 198351, drops 0)
+2018-02-03 10:11:34,742 : INFO : deleting the raw counts dictionary of 12052 items
+2018-02-03 10:11:34,743 : INFO : sample=0.001 downsamples 58 most-common words
+2018-02-03 10:11:34,743 : INFO : downsampling leaves estimated 145462 word corpus (73.3% of prior 198351)
+2018-02-03 10:11:34,743 : INFO : estimated required memory for 12052 words and 20 dimensions: 7954320 bytes
+2018-02-03 10:11:34,767 : INFO : resetting layer weights
+2018-02-03 10:11:34,895 : INFO : training model with 3 workers on 12052 vocabulary and 20 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-02-03 10:11:35,770 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-02-03 10:11:35,775 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-02-03 10:11:35,778 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-02-03 10:11:35,778 : INFO : training on 1586808 raw words (1163253 effective words) took 0.9s, 1323833 effective words/s
+2018-02-03 10:11:35,778 : INFO : training model with 3 workers on 12052 vocabulary and 20 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-02-03 10:11:36,786 : INFO : PROGRESS: at 96.95% examples, 1122878 words/s, in_qsize 5, out_qsize 0
+2018-02-03 10:11:36,805 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-02-03 10:11:36,809 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-02-03 10:11:36,813 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-02-03 10:11:36,813 : INFO : training on 1586808 raw words (1163501 effective words) took 1.0s, 1128579 effective words/s
+2018-02-03 10:12:01,162 : INFO : Step 1, Minibatch Loss= 0.3424, Training Accuracy= 0.889
+2018-02-03 10:12:01,218 : INFO : Step 1, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.4138, Validation Accuracy= 0.814
+2018-02-03 10:12:03,826 : INFO : Step 2, Minibatch Loss= 0.1178, Training Accuracy= 0.977
+2018-02-03 10:12:03,881 : INFO : Step 2, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.2418, Validation Accuracy= 0.911
+2018-02-03 10:12:06,498 : INFO : Step 3, Minibatch Loss= 0.0649, Training Accuracy= 0.987
+2018-02-03 10:12:06,553 : INFO : Step 3, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.1747, Validation Accuracy= 0.934
+2018-02-03 10:12:09,143 : INFO : Step 4, Minibatch Loss= 0.0442, Training Accuracy= 0.990
+2018-02-03 10:12:09,197 : INFO : Step 4, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.1342, Validation Accuracy= 0.957
+2018-02-03 10:12:11,753 : INFO : Step 5, Minibatch Loss= 0.0306, Training Accuracy= 0.995
+2018-02-03 10:12:11,798 : INFO : Step 5, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.1336, Validation Accuracy= 0.947
+2018-02-03 10:12:12,316 : INFO : Code run-time: 38.0283408164978 seconds
+2018-02-03 10:20:32,418 : INFO : collecting all words and their counts
+2018-02-03 10:20:32,418 : INFO : PROGRESS: at sentence #0, processed 0 words, keeping 0 word types
+2018-02-03 10:20:32,462 : INFO : collected 12052 word types from a corpus of 198351 raw words and 9482 sentences
+2018-02-03 10:20:32,462 : INFO : Loading a fresh vocabulary
+2018-02-03 10:20:32,481 : INFO : min_count=1 retains 12052 unique words (100% of original 12052, drops 0)
+2018-02-03 10:20:32,481 : INFO : min_count=1 leaves 198351 word corpus (100% of original 198351, drops 0)
+2018-02-03 10:20:32,513 : INFO : deleting the raw counts dictionary of 12052 items
+2018-02-03 10:20:32,514 : INFO : sample=0.001 downsamples 58 most-common words
+2018-02-03 10:20:32,514 : INFO : downsampling leaves estimated 145462 word corpus (73.3% of prior 198351)
+2018-02-03 10:20:32,514 : INFO : estimated required memory for 12052 words and 20 dimensions: 7954320 bytes
+2018-02-03 10:20:32,536 : INFO : resetting layer weights
+2018-02-03 10:20:32,665 : INFO : training model with 3 workers on 12052 vocabulary and 20 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-02-03 10:20:33,676 : INFO : PROGRESS: at 96.95% examples, 1120421 words/s, in_qsize 5, out_qsize 0
+2018-02-03 10:20:33,689 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-02-03 10:20:33,694 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-02-03 10:20:33,697 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-02-03 10:20:33,697 : INFO : training on 1586808 raw words (1163988 effective words) took 1.0s, 1132250 effective words/s
+2018-02-03 10:20:33,697 : INFO : training model with 3 workers on 12052 vocabulary and 20 features, using sg=0 hs=0 sample=0.001 negative=5 window=5
+2018-02-03 10:20:34,705 : INFO : PROGRESS: at 93.84% examples, 1089138 words/s, in_qsize 5, out_qsize 0
+2018-02-03 10:20:34,755 : INFO : worker thread finished; awaiting finish of 2 more threads
+2018-02-03 10:20:34,757 : INFO : worker thread finished; awaiting finish of 1 more threads
+2018-02-03 10:20:34,761 : INFO : worker thread finished; awaiting finish of 0 more threads
+2018-02-03 10:20:34,761 : INFO : training on 1586808 raw words (1163679 effective words) took 1.1s, 1099789 effective words/s
+2018-02-03 10:21:01,210 : INFO : Step 1, Minibatch Loss= 0.3963, Training Accuracy= 0.859
+2018-02-03 10:21:01,269 : INFO : Step 1, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.4507, Validation Accuracy= 0.828
+2018-02-03 10:21:03,724 : INFO : Step 2, Minibatch Loss= 0.1758, Training Accuracy= 0.958
+2018-02-03 10:21:03,778 : INFO : Step 2, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.2235, Validation Accuracy= 0.938
+2018-02-03 10:21:06,262 : INFO : Step 3, Minibatch Loss= 0.0933, Training Accuracy= 0.982
+2018-02-03 10:21:06,314 : INFO : Step 3, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.1512, Validation Accuracy= 0.952
+2018-02-03 10:21:08,851 : INFO : Step 4, Minibatch Loss= 0.0609, Training Accuracy= 0.987
+2018-02-03 10:21:08,904 : INFO : Step 4, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.1369, Validation Accuracy= 0.959
+2018-02-03 10:21:11,521 : INFO : Step 5, Minibatch Loss= 0.0383, Training Accuracy= 0.995
+2018-02-03 10:21:11,575 : INFO : Step 5, num_hidden= 3.0000, dropout= 1.000, Validation Loss= 0.1371, Validation Accuracy= 0.955
+2018-02-03 10:21:12,096 : INFO : Code run-time: 39.727142095565796 seconds

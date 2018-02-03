@@ -112,7 +112,7 @@ def train_and_visualize(num_hidden, dropout, *args,training_steps=10, batch_size
 #    config = tf.ConfigProto()
 #    config.gpu_options.allow_growth = True
     
-    fold=5 #choose validation batch
+    fold=7 #choose validation batch
 #    with tf.Session(config=config) as sess:
     with tf.Session() as sess:
         sess.run(init)
@@ -244,16 +244,16 @@ def plot_neuron(neuron_num):
         plt.tight_layout()
         plt.savefig('activations_visualized/run5/neuron'+str(neuron_num)+'tweet'+str(i))
 
-def write_csv(writefilename):
+def write_csv(folder):
+    """ writes multiple csv files to folder, each being data for one tweet """
 #    pdb.set_trace()
-    writer = open(writefilename,'w', encoding="utf8")
-    writer.write('word, pTrump, act1, act2, act3\n') #header of CSV
     for i in range(len(result)): #each res is a tweet
         if batch_y[i][0]==1:
             handle='HillaryClinton'
         elif batch_y[i][1]==1:
             handle='realDonaldTrump'
-        writer.write('handle: '+handle+'\n')
+        writer = open(folder+str(i)+handle+".csv",'w', encoding="utf8")
+        writer.write('word, pTrump, act1, act2, act3\n') #header of CSV
         res=result[i]
         for word_num in range(len(res)//3): #3 attributes per word
             writer.write('"'+res[word_num,'word']+'",')
@@ -266,7 +266,7 @@ def write_csv(writefilename):
 #for neuron_num in range(num_hidden):
 #    plot_neuron(neuron_num)    
 
-write_csv('activations_visualized/run5/run5.csv')
+write_csv('activations_visualized/run7/')
         
 #plot_neuron(0)
     
