@@ -9,12 +9,6 @@ Parts of code borrowed from J. H. Wei:
 https://jhwei.github.io/CMPS242_Machine_learning/docs/#/3/1
 """
 
-#import main
-
-from __future__ import absolute_import
-from __future__ import division
-from __future__ import print_function
-
 import time, functools, gensim, sets, pdb, collections, tensorflow as tf, numpy as np
 from tensorflow.contrib import rnn
 import matplotlib.pyplot as plt
@@ -33,124 +27,7 @@ import tempfile
 TEMP_FOLDER = tempfile.gettempdir()
 print('Folder "{}" will be used to save temporary dictionary and corpus.'.format(TEMP_FOLDER))
 
-tf.reset_default_graph()  #resets graph
-
-
-import csv
-from nltk.tokenize import sent_tokenize, word_tokenize, TweetTokenizer
-
-def preprocess(readfilename, writefilename):
-    print("Preprocessing...")
-    reader = csv.reader(open(readfilename, encoding="utf8"))
-    writer = open(writefilename,'w', encoding="utf8")
-    line_num = 0
-    next(reader)
-    labels = []
-    messages=[]    
-    for row in reader:
-        line_num += 1 # line_num += 1 is the same as line_num++
-        if line_num % 500 == 0:
-            print(line_num)
-        temp_label = row[0]
-        temp_text = row[1]
-        #get the train label list
-        if temp_label == 'realDonaldTrump':
-            labels.append(0)
-        elif temp_label == 'HillaryClinton':
-            labels.append(1)
-        words = TweetTokenizer().tokenize(temp_text)
-        for word in words:
-            if word.startswith('http'):
-                words[words.index(word)] = '<url>'
-            if word.startswith('@'):
-                words[words.index(word)] = '<@mention>'
-            if word.startswith('#'):
-                words[words.index(word)] = '<hashtag>'
-            if word[0].isdigit():
-                words[words.index(word)] = '<num>'
-#            if word.endswith('...'): #for some reason some characters are turned into ellipsis, e.g. 'clicks'->'cl...'
-#                words.pop(words.index(word))                 
-        words_lower = [w.lower() for w in words]
-        word_num = 0
-        temp_sentence = ""
-        for temp_word in words_lower:
-            word_num += 1
-            if word_num == 1:
-                temp_sentence += temp_word
-            else:
-                temp_sentence += " " + temp_word
-        temp_sentence += "\n"
-        messages.append(temp_sentence.split())
-        writer.write(temp_sentence)
-    writer.close()
-    print("Preprocessing is done!")
-    return labels, messages
-    
-def tokenize(readfilename, writefilename,size=50): #Tokenize with Word2Vec, use np.append
-    labels, messages = preprocess(readfilename, writefilename)
-    X_train_length = [len(message) for message in messages]
-    max_length = max(X_train_length)
-    model = gensim.models.Word2Vec(messages, min_count=1, size=size, iter=8)
-    model.train(messages, total_examples=model.corpus_count, epochs=model.iter)
-#Hillary is [1,0] while Trump is [0,1]
-    labels=[(label==1)*[1,0]+(label==0)*[0,1] for label in labels] 
-    labels=np.stack(labels,axis=0)
-    
-    vocab_list = []
-    for word_list in messages:
-        vocab_list += word_list
-    count = collections.Counter(vocab_list)
-
-    vocab_dict = dict()
-    embedding_matrix = np.empty((0, size), float)
-
-    for word in count:
-        vocab_dict[word] = len(vocab_dict)
-        embedding_matrix = np.vstack((embedding_matrix, model[word]))
-
-    res=[]
-    for message in messages:
-        temp=[]
-        for word in message:
-            temp.append(vocab_dict[word])
-        while len(temp)<max_length:
-            temp.append(0)
-        res.append(np.array(temp))
-    res=np.stack(res,axis=0)
-    vocab_by_value={}
-    for key in vocab_dict:
-        vocab_by_value[vocab_dict[key]]=key
-
-    return res, labels, X_train_length, vocab_dict, embedding_matrix, vocab_by_value
-
-def segment(readfilename, writefilename,**kwargs): #write into data segment (database object)
-    tweets,labels, X_train_length, vocab_dict, embedding_matrix, vocab_by_value = tokenize(
-            readfilename,writefilename,**kwargs)
-    full = sets.core.dataset.Dataset(data=tweets,target=labels)
-    full.__setitem__('length',X_train_length)
-    return full, vocab_dict, embedding_matrix, vocab_by_value
-
-
-def split(full,num):
-    """returns the num-th partition of 10-fold cross validation (0 to 9)
-    full: sets.core.dataset.Dataset object
-    num: int
-    rtype: (Dataset, Dataset)"""
-    validation_size = len(full)//10
-    data=full.data.tolist()
-    target=full.target.tolist()
-    length=full.length.tolist()
-    for _ in range(num*validation_size):
-        data.insert(0,data.pop())
-        target.insert(0,target.pop())
-        length.insert(0,length.pop())
-    data=np.array(data)
-    target=np.array(target)
-    length=np.array(length)
-    full = sets.core.dataset.Dataset(data=data,target=target)
-    full.__setitem__('length',length)
-    train, validation = sets.Split(0.9)(full)
-    return train, validation
+from main import segment, split
 
 def train_and_visualize(num_hidden, dropout, *args,training_steps=10, batch_size=93, **kwargs):
     
@@ -294,7 +171,7 @@ def train_and_visualize(num_hidden, dropout, *args,training_steps=10, batch_size
         #visualize activation of each neuron at each word in 20 tweets    
         dropout=0
         result=[] 
-        num_tweets=5 #number of tweets to observe
+        num_tweets=10 #number of tweets to observe
         batch=validation.sample(num_tweets) #change back to batch_size as needed
         batch_x = batch.data
         batch_y = batch.target
@@ -331,13 +208,18 @@ def train_and_visualize(num_hidden, dropout, *args,training_steps=10, batch_size
 
 
 embed_size=20
-full, vocab_dict, embedding_matrix, vocab_by_value = segment('train.csv','train_p.csv',size=embed_size)
-num_hidden=20
-dropout= .9 #this is actually 1-dropout...
+full, vocab_dict, embedding_matrix = segment('train.csv',size=embed_size)
+
+vocab_by_value={}
+for key in vocab_dict:
+    vocab_by_value[vocab_dict[key]]=key
+
+num_hidden=3
+dropout= 1 #this is actually 1-dropout...
 
 previous_valid_acc, result, batch_y = train_and_visualize(num_hidden, dropout)
 
-def plot_neuron(neuron_num):    
+def plot_neuron(neuron_num):
     for i in range(len(result)): #each res is a tweet
         words=[] #contains words and prediction so far
         acts=[]
@@ -360,11 +242,31 @@ def plot_neuron(neuron_num):
         ax.set_title('Neuron #'+str(neuron_num)+'(Overall accuracy: '+'{:.2f}'.format(previous_valid_acc)+')')
         plt.xlim(-1,1)
         plt.tight_layout()
-        plt.savefig('activations_visualized/run4/neuron'+str(neuron_num)+'tweet'+str(i))
+        plt.savefig('activations_visualized/run5/neuron'+str(neuron_num)+'tweet'+str(i))
+
+def write_csv(writefilename):
+#    pdb.set_trace()
+    writer = open(writefilename,'w', encoding="utf8")
+    writer.write('word, pTrump, act1, act2, act3\n') #header of CSV
+    for i in range(len(result)): #each res is a tweet
+        if batch_y[i][0]==1:
+            handle='HillaryClinton'
+        elif batch_y[i][1]==1:
+            handle='realDonaldTrump'
+        writer.write('handle: '+handle+'\n')
+        res=result[i]
+        for word_num in range(len(res)//3): #3 attributes per word
+            writer.write('"'+res[word_num,'word']+'",')
+            writer.write('{:.2f}'.format(res[word_num,'predicted'][1])+',')
+            writer.write('{:.2f}'.format(res[word_num,'state'][0])+',')
+            writer.write('{:.2f}'.format(res[word_num,'state'][1])+',')
+            writer.write('{:.2f}'.format(res[word_num,'state'][2])+'\n')
 
             
-for neuron_num in range(num_hidden):
-    plot_neuron(neuron_num)    
+#for neuron_num in range(num_hidden):
+#    plot_neuron(neuron_num)    
+
+write_csv('activations_visualized/run5/run5.csv')
         
 #plot_neuron(0)
     
