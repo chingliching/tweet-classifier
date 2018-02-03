@@ -8,7 +8,19 @@ Machine learning algorithm to classify tweets as Hillary Clinton or Donald Trump
 
 <h2>Interesting Findings</h2>
 
-1. Certain words distinguished the two politicians from each other.
+1. The algorithm only needed half the tweet for most cases. 
+
+<img src="https://github.com/IvanChingLi/tweet-classifier/blob/master/activations_visualized/to_readme/clinton2.png" width="800">
+<img src="https://github.com/IvanChingLi/tweet-classifier/blob/master/activations_visualized/to_readme/clinton3.png" width="800">
+<img src="https://github.com/IvanChingLi/tweet-classifier/blob/master/activations_visualized/to_readme/trump1.png" width="800">
+<img src="https://github.com/IvanChingLi/tweet-classifier/blob/master/activations_visualized/to_readme/trump3.png" width="800">
+
+2. There were some close calls.
+<img src="https://github.com/IvanChingLi/tweet-classifier/blob/master/activations_visualized/to_readme/clinton1.png" width="800">
+<img src="https://github.com/IvanChingLi/tweet-classifier/blob/master/activations_visualized/to_readme/trump2.png" width="800">
+
+
+3. Certain words distinguished the two politicians from each other.
 
 | Top Trumpian Words  | Top Clintonian Words |
 | ------------- | ------------- |
@@ -23,7 +35,7 @@ Machine learning algorithm to classify tweets as Hillary Clinton or Donald Trump
 | Crooked  | nominate  |
 | center  | progressive  |
 
-2. Although many words were used, there were roughly 20 "ideas" (embedding dimensions). Accounting for more than 20 does not improve the accuracy.
+4. Although many words were used, there were roughly 20 "ideas" (embedding dimensions). Accounting for more than 20 does not improve the accuracy.
 
 <img src="https://github.com/IvanChingLi/tweet-classifier/blob/master/BOW_embedding/embed_plot.png" width="400">
 
@@ -62,4 +74,5 @@ The dataset:
 3. Recurrent neural network
 - Used LSTM (long short term memory) cell with dropout, achieved average accuracy of 95.2%.
 - Performance does not improve beyond two neurons (one layer).
+- Used pre-trained weights from Word2Vec
 
