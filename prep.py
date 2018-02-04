@@ -115,3 +115,66 @@ def preprocess(readfilename, writefilename,write=True):
 def parse_file(file):
     labels,messages=preprocess('',file)
     return labels,messages
+
+def vectorize(file):
+    """turns words into indices (no embedding)"""
+    from prep import parse_file
+    import numpy as np
+    import collections
+    labels, messages = parse_file(file)
+    X_train_length = [len(message) for message in messages]
+    max_length = max(X_train_length)
+    #Hillary is [1,0] while Trump is [0,1]
+    labels=[(label==1)*[1,0]+(label==0)*[0,1] for label in labels] 
+    labels=np.stack(labels,axis=0)
+    
+    vocab_list = []
+    for word_list in messages:
+        vocab_list += word_list
+    count = collections.Counter(vocab_list)
+
+    vocab_dict = dict()
+    for word in count:
+        vocab_dict[word] = len(vocab_dict)
+
+    res=[]
+    for message in messages:
+        temp=[]
+        for word in message:
+            temp.append(vocab_dict[word])
+        while len(temp)<max_length:
+            temp.append(0)
+        res.append(np.array(temp))
+    res=np.stack(res,axis=0)
+
+    return res, labels, X_train_length, vocab_dict
+
+def split_csv(file,d1,d2):
+#    pdb.set_trace()
+    """splits one csv file into three: train, test, predict;
+    input decimals represent percentages, e.g. d1=.1 d2=.1 means 
+    prediction set is first 10% of full set and test set is next 10%"""
+    reader = csv.reader(open(file,encoding='utf8'),delimiter=';')
+    next(reader) #skip header
+    length = 0 #count length of file
+    for line in reader:
+        length +=1
+    reader = csv.reader(open(file,encoding='utf8'),delimiter=';')
+    writer1 = open(file[:-4]+'_predict.csv','w', encoding="utf8")
+    writer2 = open(file[:-4]+'_test.csv','w', encoding="utf8")
+    writer3 = open(file[:-4]+'_train.csv','w', encoding="utf8")
+    i = 0
+    for line in reader:
+        if i < d1*length:
+            i+=1
+            writer1.write(line[0]+';'+line[1]+'\n')
+        elif i<(d1+d2)*length:
+            i+=1
+            writer2.write(line[0]+';'+line[1]+'\n')
+        else:
+            writer3.write(line[0]+';'+line[1]+'\n')
+    writer1.close()
+    writer2.close()
+    writer3.close()
+    
+    
