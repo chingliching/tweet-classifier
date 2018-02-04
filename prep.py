@@ -125,7 +125,7 @@ def vectorize(file):
     X_train_length = [len(message) for message in messages]
     max_length = max(X_train_length)
     #Hillary is [1,0] while Trump is [0,1]
-    labels=[(label==1)*[1,0]+(label==0)*[0,1] for label in labels] 
+#    labels=[(label==1)*[1,0]+(label==0)*[0,1] for label in labels] 
     labels=np.stack(labels,axis=0)
     
     vocab_list = []
