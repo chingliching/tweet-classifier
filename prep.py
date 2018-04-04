@@ -135,7 +135,7 @@ def vectorize(file):
 
     vocab_dict = dict()
     for word in count:
-        vocab_dict[word] = len(vocab_dict)
+        vocab_dict[word] = len(vocab_dict)+1 #zero is reserved for zero-padding
 
     res=[]
     for message in messages:

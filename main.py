@@ -24,9 +24,9 @@ import tempfile
 TEMP_FOLDER = tempfile.gettempdir()
 print('Folder "{}" will be used to save temporary dictionary and corpus.'.format(TEMP_FOLDER))
 
-from prep import parse_file
 
 def tokenize(file,size=50): #Tokenize with Word2Vec, use np.append
+    from prep import parse_file
     labels, messages = parse_file(file)
     X_train_length = [len(message) for message in messages]
     max_length = max(X_train_length)
