@@ -39,6 +39,11 @@ Machine learning algorithm to classify tweets as Hillary Clinton or Donald Trump
 
 <img src="https://github.com/IvanChingLi/tweet-classifier/blob/master/BOW_embedding/embed_plot.png" width="400">
 
+5. The algorithm generalizes poorly to tweets from other people, i.e. the algorithm learned Trump vs. Hillary, not Trump vs. not-Trump or Hillary vs. not-Hillary.
+- Barack Obama (@BarackObama): 62% Hillary, 38% Trump
+- Ellen DeGeneres (@TheEllenShow): 19% Hillary, 81% Trump
+- Conan O'Brien (@ConanOBrien): 12% Hillary, 88% Trump
+
 <h2>Technical Details</h2>
 
 
