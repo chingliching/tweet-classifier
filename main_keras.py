@@ -45,8 +45,8 @@ X_test = sequence.pad_sequences(X_test, maxlen=max_review_length)
 
 # create the model
 embedding_vector_length = 20
-rs = [5] #num units in each recurrent layer
-ds = [1] #last value must be 1
+rs = [10] #num units in each recurrent layer
+ds = [2] #last value must be 2
 
 def train():
     model = Sequential()
@@ -56,9 +56,10 @@ def train():
     for r in rs[:-1]:
         model.add(LSTM(r,return_sequences=True))
     model.add(LSTM(rs[-1]))
-    for d in ds:
+    for d in ds[:-1]:
         model.add(Dense(d, activation='sigmoid'))
-    model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+    model.add(Dense(ds[-1], activation='softmax'))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
     print(model.summary())
     history = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=64)
 
@@ -88,20 +89,20 @@ for i in range(num_trials):
 # for i in range(len(res)):
 #     res[i] = round(res[i],4)
 
-#generate run id
-from time import gmtime, strftime
-run_id = strftime("%Y-%m-%d-%H-%M", gmtime())
-#save model
-model.save('log/{}model.h5'.format(run_id))  # creates a HDF5 file
-#save weights
-model.save_weights('log/{}weights.h5'.format(run_id))
-#save history
-with open('log/{}history.txt'.format(run_id), 'w') as file:
-     file.write(str(history.history))
-#save vocab_dict
-import json
-with open('log/vocab_dict.json', 'w') as f:
-    json.dump(vocab_dict, f)
+# #generate run id
+# from time import gmtime, strftime
+# run_id = strftime("%Y-%m-%d-%H-%M", gmtime())
+# #save model
+# model.save('log/{}model.h5'.format(run_id))  # creates a HDF5 file
+# #save weights
+# model.save_weights('log/{}weights.h5'.format(run_id))
+# #save history
+# with open('log/{}history.txt'.format(run_id), 'w') as file:
+#      file.write(str(history.history))
+# #save vocab_dict
+# import json
+# with open('log/vocab_dict.json', 'w') as f:
+#     json.dump(vocab_dict, f)
 
 
 

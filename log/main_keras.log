@@ -80,3 +80,15 @@
 2018-04-02 23:51:34,312 : INFO : Accuracy: 89.03% for recurrent layers [5] and dense layers [1]
 2018-04-02 23:51:34,604 : INFO : final_result for  for recurrent layers [5] and dense layers [1]:[0.89]
 2018-04-02 23:51:34,604 : INFO : Code run-time: 56.857008934020996 seconds
+2018-04-04 01:07:04,763 : INFO : Accuracy: 87.61% for recurrent layers [5] and dense layers [2]
+2018-04-04 01:07:04,956 : INFO : final_result for  for recurrent layers [5] and dense layers [2]:[0.876]
+2018-04-04 01:07:04,956 : INFO : Code run-time: 26.495383977890015 seconds
+2018-04-04 01:09:06,563 : INFO : Accuracy: 90.98% for recurrent layers [10] and dense layers [2]
+2018-04-04 01:09:06,700 : INFO : final_result for  for recurrent layers [10] and dense layers [2]:[0.91]
+2018-04-04 01:09:06,700 : INFO : Code run-time: 50.011274576187134 seconds
+2018-04-04 01:35:45,285 : INFO : Accuracy: 90.72% for recurrent layers [10] and dense layers [2]
+2018-04-04 01:35:45,459 : INFO : final_result for  for recurrent layers [10] and dense layers [2]:[0.907]
+2018-04-04 01:35:45,460 : INFO : Code run-time: 52.3239631652832 seconds
+2018-04-04 01:41:29,990 : INFO : Accuracy: 92.14% for recurrent layers [10] and dense layers [2]
+2018-04-04 01:41:29,994 : INFO : final_result for  for recurrent layers [10] and dense layers [2]:[0.921]
+2018-04-04 01:41:29,994 : INFO : Code run-time: 52.61273193359375 seconds
