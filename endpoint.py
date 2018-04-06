@@ -90,6 +90,6 @@ report['prob_trump'] = pd.Series(prob_trump.reshape((prob_trump.size)))
 
 # scores = model.evaluate(X, y, verbose=0)
 print(report)
-print('Average proportion of words not in vocab_dict for {} is'.format(username),np.mean(report['prop_zeros']))
-print('Average score for {} is'.format(username),np.mean(scores,axis=0),'+/-',np.std(scores,axis=0))
+print('Average proportion of words not in vocab_dict for {} is'.format(username),round(np.mean(report['prop_zeros']),2))
+print('Average score for {} is'.format(username),np.mean(scores,axis=0).round(2),'+/-',np.std(scores,axis=0).round(2))
 
