@@ -13,10 +13,10 @@ import time
 
 import numpy as np
 from keras.models import Sequential
-from keras.layers import Dense
-from keras.layers import LSTM
+from keras.layers import Dense, BatchNormalization, LSTM, Dropout
 from keras.layers.embeddings import Embedding
 from keras.preprocessing import sequence
+from keras.regularizers import l1_l2
 
 from prep import vectorize
 
@@ -45,8 +45,13 @@ X_test = sequence.pad_sequences(X_test, maxlen=max_review_length)
 
 # create the model
 embedding_vector_length = 20
-rs = [10] #num units in each recurrent layer
-ds = [2] #last value must be 2
+rs = [100, 100] #num units in each recurrent layer
+ds = [100, 2] #last value must be 2
+k_l1 = 0
+k_l2 = .1
+b_l1 = 0
+b_l2 = .1
+dropout_rate=[0.0, 0.1]
 
 def train():
     model = Sequential()
@@ -55,13 +60,16 @@ def train():
     #model.add(LSTM(100,return_sequences=True))
     for r in rs[:-1]:
         model.add(LSTM(r,return_sequences=True))
+    # model.add(Dropout(dropout_rate[0]))
+    # model.add(BatchNormalization())
     model.add(LSTM(rs[-1]))
+    model.add(Dropout(dropout_rate[1]))
     for d in ds[:-1]:
         model.add(Dense(d, activation='sigmoid'))
-    model.add(Dense(ds[-1], activation='softmax'))
-    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy'])
+    model.add(Dense(ds[-1], activation='softmax', kernel_regularizer=l1_l2(k_l1,k_l2), bias_regularizer=l1_l2(b_l1,b_l2)))
+    model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['categorical_accuracy','categorical_crossentropy'])
     print(model.summary())
-    history = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=64)
+    history = model.fit(X_train, y_train, validation_data=(X_test, y_test), epochs=10, batch_size=64, verbose=1)
 
     # Final evaluation of the model
     scores = model.evaluate(X_test, y_test, verbose=0)
@@ -70,42 +78,51 @@ def train():
     second=' for recurrent layers '+str(rs) + ' and dense layers '+str(ds)
     log.info(first+second)
     
-    writer = open('results.csv','w', encoding="utf8")
-    writer.write(str(rs)+',')
-    writer.write(str(ds)+',')
-    writer.write(str(round(scores[1],4))+'\n')
-    writer.close()
+    # writer = open('results.csv','w', encoding="utf8")
+    # writer.write(str(rs)+',')
+    # writer.write(str(ds)+',')
+    # writer.write(str(round(scores[1],4))+'\n')
+    # writer.close()
     
-    return scores[1], model, history
+    return scores, model, history
 
-second=' for recurrent layers '+str(rs) + ' and dense layers '+str(ds)
+second='''recurrent layers {} and dense layers {}
+ and regularization hyperparams {}, {}, {}, {}
+ and dropout hyperparams {}
+ '''.format(str(rs),str(ds),k_l1,k_l2,b_l1,b_l2,dropout_rate)
+
+log.info(second)
+
 t0=time.time()
 
 num_trials = 1
 res=[]
 for i in range(num_trials):
     acc, model, history=train()
-    res.append(round(acc,3))
+    log.info(str(history.history))
+    res.append(acc)
 # for i in range(len(res)):
 #     res[i] = round(res[i],4)
 
-# #generate run id
-# from time import gmtime, strftime
-# run_id = strftime("%Y-%m-%d-%H-%M", gmtime())
-# #save model
-# model.save('log/{}model.h5'.format(run_id))  # creates a HDF5 file
-# #save weights
-# model.save_weights('log/{}weights.h5'.format(run_id))
-# #save history
-# with open('log/{}history.txt'.format(run_id), 'w') as file:
-#      file.write(str(history.history))
-# #save vocab_dict
-# import json
-# with open('log/vocab_dict.json', 'w') as f:
-#     json.dump(vocab_dict, f)
+
+# generate run id
+from time import gmtime, strftime
+run_id = strftime("%Y-%m-%d-%H-%M", gmtime())
+#save model
+model.save('log/{}model.h5'.format(run_id))  # creates a HDF5 file
+#save weights
+model.save_weights('log/{}weights.h5'.format(run_id))
+#save history
+with open('log/{}history.txt'.format(run_id), 'w') as file:
+     file.write(str(history.history))
+#save vocab_dict
+import json
+with open('log/vocab_dict.json', 'w') as f:
+    json.dump(vocab_dict, f)
 
 
 
-log.info('final_result for '+second+':'+str(res))
+log.info('final_result '+':'+str(res)+str(model.metrics))
 t1 = time.time()
 log.info('Code run-time: '+str(t1-t0)+' seconds')
+

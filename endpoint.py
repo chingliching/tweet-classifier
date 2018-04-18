@@ -10,6 +10,7 @@ filename = sys.argv[-1]
 username = filename[:-4]
 
 import csv
+from nltk.tokenize import TweetTokenizer
 
 
 
@@ -32,7 +33,7 @@ messages = df['text']
 
 def preprocess(message):
 	res = []
-	for word in message.lower().split():
+	for word in TweetTokenizer().tokenize(message):
 		if 'pic.twitter.com' in word:
 			res.append('<pic>')
 		elif word.startswith('http'):
