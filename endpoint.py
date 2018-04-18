@@ -31,22 +31,9 @@ report['text'] = df['text']
 
 messages = df['text']
 
-def preprocess(message):
-	res = []
-	for word in TweetTokenizer().tokenize(message):
-		if 'pic.twitter.com' in word:
-			res.append('<pic>')
-		elif word.startswith('http'):
-			res.append('http')
-		elif word.startswith('@'):
-			res.append('<@mention>')
-		elif word[0].isdigit():
-			res.append('<num>')
-		else:
-			res.append(word)
-	return res
+from prep import preprocess_sentence
 
-messages = messages.map(preprocess)
+messages = messages.map(preprocess_sentence)
 # messages.to_csv(filename[:-4]+'_p.csv')
 
 def apply_dict(message):

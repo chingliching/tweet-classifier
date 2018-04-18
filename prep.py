@@ -176,5 +176,85 @@ def split_csv(file,d1,d2):
     writer1.close()
     writer2.close()
     writer3.close()
+
+def preprocess_sentence(message):
+    res = []
+    for word in TweetTokenizer().tokenize(message):
+        if 'pic.twitter.com' in word:
+            res.append('<pic>')
+        elif word.startswith('http'):
+            res.append('http')
+        elif word.startswith('@'):
+            res.append('<@mention>')
+        elif word[0].isdigit():
+            res.append('<num>')
+        else:
+            res.append(word)
+    return res
     
+def clean(files):
+    """ Input: list of csv file names
+        Output: messages indexed and padded (np array), labels indexed (np array), vocab_dict with message indices, and handle_dict with handle indices
+        Designed to be compatiable with the tweet downloader (GetOldTweets-python-master)"""
+    from prep import preprocess_sentence
+    messages = []
+    labels = []
+    vocab_dict = {}
+    handle_dict = {}
+    skipped, total = 0,0
+    for file in files:
+        handle = file[:-4]
+        handle_dict[handle] = len(handle_dict)
+        handle = handle_dict[handle]
+        reader = csv.reader(open(file,encoding='utf8'),delimiter=';')
+        next(reader)
+        for row in reader:
+            total +=1
+            message = row[4]
+            if len(message)<10: #aka something went wrong
+                skipped +=1
+                print('skipping this message: {}'.format(message))
+                continue
+            labels.append(handle)
+            message = preprocess_sentence(message)
+            messages.append(message)
+
+    import collections
+    vocab_list = []
+    for word_list in messages:
+        vocab_list += word_list
+    count = collections.Counter(vocab_list)
+
+    vocab_dict = dict()
+    for word in count:
+        vocab_dict[word] = len(vocab_dict)+1 #zero is reserved for zero-padding
+
+    res=[]
+    max_length=43
+    import numpy as np
+    for message in messages:
+        temp=[]
+        for word in message:
+            if len(temp)==max_length:
+                break
+            temp.append(vocab_dict[word])
+        while len(temp)<max_length:
+            temp.append(0)
+        res.append(np.array(temp))
+    res=np.stack(res,axis=0)
+
+    from keras.utils.np_utils import to_categorical 
+    labels = to_categorical(labels, num_classes=len(files))
+
+    p = np.random.permutation(len(res)) #shuffle indices around
+    res, labels =  res[p], labels[p]
+
+    print('Skipped {}/{} rows'.format(skipped, total))
+    return res, labels, vocab_dict, handle_dict
+
+
+
+
+
+
     

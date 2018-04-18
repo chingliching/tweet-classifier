@@ -55,7 +55,7 @@ df['messages'] = messages
 
 def apply_dict(message):
 	import json
-	with open('log/vocab_dict.json') as f:
+	with open('log/2018-04-18-07-44vocab_dict.json') as f:
 	    vocab_dict = json.load(f)
 	res = []
 	for word in message:
@@ -82,12 +82,12 @@ y = np.ones((len(X))) #ones corresponds to Hillary
 
 ### load model and weights
 from keras.models import load_model
-model = load_model('log/2018-04-04-08-35model.h5')
-model.load_weights('log/2018-04-04-08-35weights.h5')
+model = load_model('log/2018-04-18-07-44model.h5')
+model.load_weights('log/2018-04-18-07-44weights.h5')
 
 scores = model.predict(X)
-prob_hillary, prob_trump = np.split(scores, 2, axis=1)
-df['prob_hillary'] = pd.Series(prob_hillary.reshape((prob_hillary.size)))
+_,prob_trump, _,_,_= np.split(scores, 5, axis=1)
+# df['prob_hillary'] = pd.Series(prob_hillary.reshape((prob_hillary.size)))
 df['prob_trump'] = pd.Series(prob_trump.reshape((prob_trump.size)))
 
 # scores = model.evaluate(X, y, verbose=0)
