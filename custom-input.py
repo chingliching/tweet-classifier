@@ -55,7 +55,7 @@ df['messages'] = messages
 
 def apply_dict(message):
 	import json
-	with open('log/2018-04-18-07-44vocab_dict.json') as f:
+	with open('log/2018-05-04-01-39vocab_dict.json') as f:
 	    vocab_dict = json.load(f)
 	res = []
 	for word in message:
@@ -74,19 +74,32 @@ def frac_zeros(l):
 		res=0
 	return round(res/len(l),2)
 
-df['frac_zeros'] = X.map(frac_zeros)
+df['frac_zeros'] = messages.map(frac_zeros)
 
 from keras.preprocessing import sequence
 X = sequence.pad_sequences(X, maxlen=43) #maxlen is from trained model
+
+import json
+import utils.glove as glove
+vocab_dict = json.load(open('log/2018-05-04-01-39vocab_dict.json'))
+wordVectors = glove.loadWordVectors(vocab_dict)
+print(wordVectors.shape)
+new_res = []
+for message in X:
+    new_res.append(np.array([wordVectors[i] for i in message]))
+X = np.stack(new_res)
+
+
 y = np.ones((len(X))) #ones corresponds to Hillary
 
 ### load model and weights
 from keras.models import load_model
-model = load_model('log/2018-04-18-07-44model.h5')
-model.load_weights('log/2018-04-18-07-44weights.h5')
+model = load_model('log/2018-05-04-01-39model.h5')
+model.load_weights('log/2018-05-04-01-39weights.h5')
 
 scores = model.predict(X)
-_,prob_trump, _,_,_= np.split(scores, 5, axis=1)
+print("scores.shape:", scores.shape)
+prob_trump = np.split(scores, 5, axis=1)[1]
 # df['prob_hillary'] = pd.Series(prob_hillary.reshape((prob_hillary.size)))
 df['prob_trump'] = pd.Series(prob_trump.reshape((prob_trump.size)))
 
