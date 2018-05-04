@@ -176,22 +176,10 @@ def split_csv(file,d1,d2):
     writer1.close()
     writer2.close()
     writer3.close()
-
-def preprocess_sentence(message):
-    res = []
-    for word in TweetTokenizer().tokenize(message):
-        if 'pic.twitter.com' in word:
-            res.append('<pic>')
-        elif word.startswith('http'):
-            res.append('http')
-        elif word.startswith('@'):
-            res.append('<@mention>')
-        elif word[0].isdigit():
-            res.append('<num>')
-        else:
-            res.append(word)
-    return res
     
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 def clean(files):
     """ Input: list of csv file names
         Output: messages indexed and padded (np array), labels indexed (np array), vocab_dict with message indices, and handle_dict with handle indices
@@ -257,4 +245,7 @@ def clean(files):
 
 
 
+>>>>>>> parent of 3bdcbb9... implemented glove vectors
+=======
+>>>>>>> parent of de16a58... performed five-class classification
     

@@ -4,6 +4,8 @@ Machine learning algorithm to classify tweets as Hillary Clinton or Donald Trump
 2. Embedded word vectors (average accuracy: 85.3% +/- 3.6%)
 3. Recurrent neural network (average accuracy: 95.2% +/- 3.6%).
 
+[Click here to input your own sentences into the model!](https://the-trumpest.herokuapp.com/)
+
 *Can be thought of as 95% C.I.
 
 <h2>Interesting Findings</h2>
