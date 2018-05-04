@@ -21,11 +21,11 @@ from keras.utils.np_utils import to_categorical
 
 from prep import clean
 
-files = ['hillaryclinton.csv',
-        'realdonaldtrump.csv',
-        'jimmyfallon.csv',
-        'barackobama.csv',
-        'conanobrien.csv']
+files = ['data/hillaryclinton.csv',
+        'data/realdonaldtrump.csv',
+        'data/jimmyfallon.csv',
+        'data/barackobama.csv',
+        'data/conanobrien.csv']
 
 res, labels, vocab_dict, handle_dict =clean(files)
 
@@ -117,20 +117,20 @@ for i in range(num_trials):
 #     res[i] = round(res[i],4)
 
 
-# generate run id
-from time import gmtime, strftime
-run_id = strftime("%Y-%m-%d-%H-%M", gmtime())
-#save model
-model.save('log/{}model.h5'.format(run_id))  # creates a HDF5 file
-#save weights
-model.save_weights('log/{}weights.h5'.format(run_id))
-#save history
-with open('log/{}history.txt'.format(run_id), 'w') as file:
-     file.write(str(history.history))
-#save vocab_dict
-import json
-with open('log/{}vocab_dict.json'.format(run_id), 'w') as f:
-    json.dump(vocab_dict, f)
+# # generate run id
+# from time import gmtime, strftime
+# run_id = strftime("%Y-%m-%d-%H-%M", gmtime())
+# #save model
+# model.save('log/{}model.h5'.format(run_id))  # creates a HDF5 file
+# #save weights
+# model.save_weights('log/{}weights.h5'.format(run_id))
+# #save history
+# with open('log/{}history.txt'.format(run_id), 'w') as file:
+#      file.write(str(history.history))
+# #save vocab_dict
+# import json
+# with open('log/{}vocab_dict.json'.format(run_id), 'w') as f:
+#     json.dump(vocab_dict, f)
 
 
 
