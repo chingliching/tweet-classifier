@@ -6,6 +6,8 @@ Machine learning algorithm to classify tweets as Hillary Clinton or Donald Trump
 
 *Can be thought of as 95% C.I.
 
+[Click here to input your own sentences into the model!](https://the-trumpest.herokuapp.com/)
+
 <h2>Interesting Findings</h2>
 
 1. The algorithm only needed half the tweet for most cases. 
