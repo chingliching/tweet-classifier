@@ -199,7 +199,6 @@ def clean(files):
     from prep import preprocess_sentence
     messages = []
     labels = []
-    vocab_dict = {}
     handle_dict = {}
     skipped, total = 0,0
     for file in files:
@@ -225,9 +224,9 @@ def clean(files):
         vocab_list += word_list
     count = collections.Counter(vocab_list)
 
-    vocab_dict = dict()
+    vocab_dict = {'<not_in_vocab>':0} #zero is reserved for zero-padding
     for word in count:
-        vocab_dict[word] = len(vocab_dict)+1 #zero is reserved for zero-padding
+        vocab_dict[word] = len(vocab_dict) 
 
     res=[]
     max_length=43
